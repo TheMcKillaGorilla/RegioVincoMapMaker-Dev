@@ -1,0 +1,344 @@
+/*
+    This style sheet manages the layout and style for all controls inside the
+    TDLM JavaFX application. Note that the stylesheet has been setup such that
+    all colors in use are declared first as swatch colors inside the root 
+    and so one can change the color theme used by the app simply by changing
+    these colors.
+
+    Note that Material Design icons are being employed for all icon buttons
+    in this application, both for the Desktop Java Framework's top toolbar
+    as well as for icon buttons in the M3's edit toolbar. Note that this
+    app uses icons from https://material.io/icons/ and icon image sizes in
+    use are as follows:
+        djf top toolbar buttons: 36x36
+        
+
+    @author Richard McKenna
+    @version 1.0
+*/
+.root{
+    /* 
+        FIRST WE'LL DEFINE OUR SWATCHES, i.e. THE COMPLEMENTARY
+        COLORS THAT WE'LL USE TOGETHER IN MULTIPLE PLACES THAT
+        TOGETHER WILL MAKE UP A GIVEN THEME
+    */
+    -swatch-neutral:        #E6E6E6;
+    -swatch-primary-up:     #A8C0AD;
+    -swatch-primary:        #C9E0CD;
+    -swatch-primary-down:   #E9E0ED;
+    -swatch-complement:     #E1E4CB;
+    -swatch-accent:         #227722;
+    -swatch-bright-accent:  #FAFAD2;
+    
+    -fx-font-family: "Roboto";
+}
+/** 
+    FIRST WE HAVE THE CONTROLS THAT THE DESKTOP JAVA FRAMEWORK
+    MAY BE MAKING USE OF:
+        .djf_top_toolbar: toolbar running the length of the top
+        .djf_top_toolbar_pane: a pane in the top toolbar with buttons
+        .djf_icon_button: buttons in the top toolbar panes
+**/
+.djf_top_toolbar {
+    -fx-background-color:   -swatch-neutral;
+    -fx-border-color:       -swatch-accent;
+    -fx-border-width:       2;
+    -fx-border-radius:      15;
+}
+.djf_toolbar_pane {
+    -fx-background-color:   -swatch-complement;
+    -fx-border-color:       -swatch-accent;
+    -fx-border-width:       2;
+    -fx-border-radius:      15;
+}
+.djf_icon_button {
+    -fx-background-color:   transparent;
+    -fx-pref-height:        30;
+    -fx-pref-width:         42;
+    -fx-min-height:         30;
+    -fx-min-width:          42;
+    -fx-padding:            0;
+}
+.djf_icon_button:hover {
+    -fx-background-color: linear-gradient(-swatch-primary-down, -swatch-primary-up);    
+}
+.djf_welcome_banner {
+    -fx-border-color:transparent;
+    -fx-border-width:10;
+}
+.djf_welcome_header {
+    -fx-font-size: 32pt;
+    -fx-background-color: transparent;
+}
+.djf_welcome_recent_pane {
+    -fx-padding: 20 20 20 20;
+    -fx-background-color:transparent;
+}
+.djf_welcome_recent_button {
+    -fx-font-size: 14pt;
+    -fx-underline: true;
+    -fx-text-fill: blue;
+    -fx-background-color:transparent;
+}
+.djf_welcome_recent_button:hover {
+    -fx-text-fill: magenta;
+}
+.djf_welcome_recent_button:pressed {
+    -fx-text-fill: yellow;
+}
+.djf_welcome_new_pane {
+    -fx-background-color:transparent;
+}
+.djf_welcome_new_button {
+    -fx-font-size:20pt;
+    -fx-background-color:transparent;
+    -fx-border-width:2px;
+    -fx-border-color:black;
+    -fx-border-radius:15px;
+}
+.djf_welcome_new_button:hover{
+    -fx-background-color:-swatch-primary;
+}
+.djf-welcome_new_button:pressed{
+    -fx-background-color:-swatch-accent;
+}
+
+.rvmm_map_frame {
+    -fx-fill: #b8ee36;
+}
+
+.rvmm_prompt {
+    -fx-font-weight:bold;
+    -fx-font-size:14pt;
+}
+
+.rvmm_color_picker {
+    
+}
+
+.rvmm_slider { 
+    -fx-show-tick-lebels: true;
+    -fx-show-tick-marks: true;
+    -fx-major-tick-unit: 100;
+    -fx-minor-tick-count: 1;
+    -fx-show-tick-labels: true;
+    -fx-snap-to-ticks: true;
+    -fx-block-increment: 50;
+    -fx-min-width:400px;
+    -fx-max-width:400px; 
+    -fx-font-size: 16pt;
+}
+
+TextInputDialog {
+    -fx-font-size: 48pt;
+}
+
+.rvmm_dialog_image_view,
+.rvmm_thumbnail_image_view {
+    -fx-cursor:hand;
+}
+
+.rvmm_table_view {
+    -fx-font-size: 16pt;
+}
+
+.rvmm_table_column {
+    -fx-preferred-width:100px;
+}
+
+.rvmm_pane, .rvmm_box {
+    -fx-background-color: rgb(201, 224, 205);
+    -fx-border: 1 1 0 0;
+    -fx-border-color: black;
+    -fx-border-radius: 10px;
+    -fx-padding: 20 10 20 10;
+    -fx-effect: dropshadow(three-pass-box, purple, 10, 0, 0, 0);
+}
+.rvmm_pane {
+    -fx-spacing: 3 3 3 3;
+    -fx-background-color: rgb(201, 224, 205);
+    -fx-border: 1 1 0 0;
+    -fx-border-color: black;
+    -fx-border-radius: 10;
+    -fx-padding: 15 15 15 15;
+    -fx-effect: dropshadow(three-pass-box, purple, 10, 0, 0, 0);
+}
+.rvmm_gradient_pane {
+    -fx-spacing: 10 5 10 5
+}
+.rvmm_big_header {
+    -fx-font-weight: bold;
+    -fx-padding: 10 10 10 10;
+}
+.rvmm_big_header {
+    -fx-font-size: 24pt;
+}
+.rvmm_region_name_header {
+    -fx-font-size: 28pt;
+    -fx-font-weight: bold;
+    -fx-underline: true;
+    -fx-text-fill: blue;
+    -fx-cursor:hand;
+}
+.rvmm_button {
+    -fx-background-color: 
+        linear-gradient(#f2f2f2, #d6d6d6),
+        linear-gradient(#fcfcfc 0%, #d9d9d9 20%, #d6d6d6 100%),
+        linear-gradient(#dddddd 0%, #f6f6f6 50%);
+    -fx-background-radius: 8,7,6;
+    -fx-background-insets: 0,1,2;
+    -fx-text-fill: black;
+}
+.rvmm_button:pressed {
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );    
+    -fx-background-color:
+        linear-gradient(#c9e0cd, #a9d0bd),
+        radial-gradient(center 50% -40%, radius 200%, #b8ee36 45%, #80c800 50%);
+    -fx-background-radius: 6, 5;
+    -fx-background-insets: 0, 1;
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.4) , 5, 0.0 , 0 , 1 );
+}
+.rvmm:hover {
+    -fx-effect: dropshadow( three-pass-box , rgba(0,0,0,0.6) , 5, 0.0 , 0 , 1 );    
+}
+.rvmm_combo_box {
+    -fx-font-size:16pt;
+    -fx-font-weight:bold;
+}
+.rvmm_button {
+    -fx-min-width:100px;
+    -fx-max-width:200px;
+    -fx-min-height:50px;
+    -fx-max-height:50px;
+    -fx-font-size:16pt;
+    -fx-font-weight:bold;
+}
+.rvmm_circle_button {
+    -fx-font-size:14pt;
+    -fx-font-weight:bold;
+    -fx-background-color: transparent;
+    -fx-border-width:2px;
+    -fx-border-color:black;
+    -fx-border-radius:10px;
+}
+.rvmm_circle_button:hover{
+    -fx-background-color:-swatch-bright-accent;
+}
+.rvmm_circle_button:pressed{
+    -fx-background-color:-swatch-accent;
+}
+.rvmm_text_field {
+    -fx-font-size:14pt;
+}
+.rvmm_landmarks_list_view {
+    -fx-font-size: 18pt;
+}
+.rvmm_delete_button {
+    -fx-text-fill: red;
+    -fx-font-size: 10pt;
+}
+/* FOR DIALOGS */
+.rvmm_dialog_grid {
+    -fx-background-color: -swatch-primary;
+    -fx-background-radius: 5.0;
+    -fx-background-insets: 0.0 5.0 0.0 5.0;
+    -fx-padding: 10;
+    -fx-hgap: 10;
+    -fx-vgap: 10;
+}
+.rvmm_dialog_header {
+    -fx-font-weight: bold;
+    -fx-font-size: 18pt
+}
+.rvmm_dialog_prompt_button {
+    -fx-font-size: 14pt;
+}
+.rvmm_dialog_prompt {
+    -fx-font-weight: bold;
+    -fx-font-size: 14pt;
+}
+.rvmm_dialog_text_field {
+    -fx-font-size:16pt;
+}
+.rvmm_parent_tree_view {
+    -fx-width: 900px;
+}
+.rvmm_parent_tree_view tree-cell {
+    -fx-background-color: pink;
+    -fx-font-size:14pt;
+}
+.tree-cell {
+    -fx-text-fill:purple;
+    -fx-background-color: yellow;
+    -fx-font-size: 20pt;
+}
+.tree-cell:selected {
+    -fx-background-color: magenta;
+}
+.rvmm_dialog_warning_label {
+    -fx-text-fill:red;
+    -fx-font-weight:bold;
+    -fx-font-size: 12pt;
+}
+.rvmm_wrapper_pane {
+    -fx-background-color:pink;
+}
+.image-view-wrapper:border {
+    -fx-border-color: black;
+    -fx-border-style: solid;
+    -fx-border-width: 5;
+}
+.rvmm_wrapper_pane:hover {
+    -fx-border-color:yellow;
+    -fx-border-width:2px;
+}
+.rvmm_dialog_button {
+    -fx-font-weight: bold;
+    -fx-font-size: 12pt;
+}
+.rvmm_dialog_top_pane {
+    -fx-background-color:   -swatch-neutral;
+    -fx-border-color:       -swatch-accent;    
+    -fx-spacing: 25px;
+}
+.rvmm_dialog_center_pane {
+    -fx-padding: 50;
+    -fx-spacing: 50;
+}
+
+.rvmm_dialog_bottom_pane {
+    
+}
+
+.rvmm_valid_label {
+    -fx-text-fill: green;
+    -fx-font-size:16pt;
+}
+
+.rvmm_invalid_label {
+    -fx-text-fill: red;
+    -fx-font-size:16pt;
+}
+
+.rvmm_text_area {
+    -fx-font-size:18pt;
+}
+
+.rvmm_exported_image_view {
+    
+}
+
+.column-header {
+    -fx-font-size: 12pt;
+    -fx-font-weight: bold;
+}
+.table-row-cell:empty {
+    -fx-background-color: #777777;
+    -fx-border-color: #777777;
+} 
+.tooltip {
+    -fx-font-size:14pt;
+    -fx-font-weight:bold;
+    -fx-background-radius: 50 50 50 50;
+    -fx-background-color:-swatch-accent;
+}

@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    This XML file allows us to easily customize the look and language used
+    in our program's user interface. Note that this properties file is only
+    for the standard controls for an app from the Desktop Java Framework, so
+    it would not include things initialized for the workspace, which is
+    customizable.
+-->
+<properties>
+    <property_list>        
+        <!-- DESKTOP JAVA FRAMEWORK CONTROLS SETTINGS -->
+        <property name="APP_TITLE"	    value="Regio Vinco Map Maker"></property>
+
+        <property name="APP_BANNER"         value="RegioVincoMapMakerWelcomeBanner.png"></property>
+	<property name="APP_LOGO"	    value="RegioVincoMapMakerLogo.png"></property>
+        <property name="APP_EXPORT_PAGE"    value="./export/ExportTester.html"></property>
+        <property name="APP_HELP_PAGE"      value="Help.html"></property>
+        <property name="APP_ABOUT_PAGE"     value="About.html"></property>
+	<property name="APP_CSS"	    value="rvmm_style.css"></property>
+        <property name="APP_PATH_CSS"	    value="workspace/style/"></property>
+        <property name="APP_PATH_EXPORT"    value="./app/"></property>
+        <property name="APP_PATH_ICONS"     value="./images/icons/"></property>
+        <property name="APP_PATH_IMAGES"    value="./images/"></property>
+        <property name="APP_PATH_WEB"       value="./settings/web/"></property>
+        <property name="RVMM_PATH_RAW_MAP_DATA_FILES"   value="./raw_map_data/"></property>        
+
+        <property name="PREF_WIDTH"         value="800"></property>
+        <property name="PREF_HEIGHT"        value="600"></property>
+        <property name="START_MAXIMIZED"    value="true"></property>
+
+        <!-- TOP TOOLBARS AND CONTROLS TO INCLUDE -->
+        <property name="HAS_WELCOME_DIALOG"     value="true"></property>
+        <property name="HAS_NEW_DIALOG"         value="true"></property>
+        <property name="HAS_TOP_TOOLBAR"        value="true"></property>        
+        <property name="HAS_FILE_TOOLBAR"       value="true"></property>
+        <property name="HAS_NEW"                value="true"></property>
+        <property name="HAS_LOAD"               value="true"></property>
+        <property name="HAS_CLOSE"              value="true"></property>
+        <property name="HAS_SAVE"               value="true"></property>
+        <property name="HAS_SAVE_AS"            value="true"></property>
+        <property name="HAS_EXPORT"             value="true"></property>
+        <property name="HAS_EXIT"               value="true"></property>
+        <property name="HAS_CLIPBOARD_TOOLBAR"  value="false"></property>
+        <property name="HAS_UNDO_TOOLBAR"       value="true"></property>
+        <property name="HAS_HELP_TOOLBAR"       value="true"></property>
+        <property name="HAS_HELP"               value="true"></property>
+        <property name="HAS_LANGUAGE"           value="false"></property>
+        <property name="HAS_ABOUT"              value="true"></property>
+
+        <!-- PROGRAM ICON FILES - FILE TOOLBAR -->        
+        <property name="NEW_BUTTON_ICON"        value="New.png"></property>
+        <property name="LOAD_BUTTON_ICON"       value="Load.png"></property>
+        <property name="CLOSE_BUTTON_ICON"      value="Close.png"></property>
+        <property name="SAVE_BUTTON_ICON"       value="Save.png"></property>
+        <property name="SAVE_AS_BUTTON_ICON"    value="SaveAs.png"></property>
+        <property name="EXPORT_BUTTON_ICON"     value="Export.png"></property>
+        <property name="EXIT_BUTTON_ICON"       value="Exit.png"></property>
+        <property name="RVMM_DELETE_MAP_BUTTON_ICON" value="Trash.png"></property>
+        <property name="RVMM_REPORT_ERROR_BUTTON_ICON" value="ReportError.png"></property>
+        <property name="RVMM_MOVE_DOWN_BUTTON_ICON" value="ArrowDown.png"></property> 
+        <property name="RVMM_MOVE_UP_BUTTON_ICON" value="ArrowUp.png"></property>
+        <property name="RVMM_ADD_SUBREGIONS_BUTTON_ICON" value="Plus.png"></property>
+        <property name="RVMM_REMOVE_SUBREGION_BUTTON_ICON" value="Minus.png"></property>
+        
+        <!-- PROGRAM ICON FILES - UNDO/REDO TOOLBAR -->        
+        <property name="UNDO_BUTTON_ICON"       value="Undo.png"></property>
+        <property name="REDO_BUTTON_ICON"       value="Redo.png"></property>
+
+        <!-- NAVIGATION TOOLBAR -->
+        <property name="RVMM_RESET_NAVIGATION_BUTTON_ICON"    value="ResetNavigation.png"></property>        
+        <property name="RVMM_FIT_TO_SUBREGION_BUTTON_ICON"      value="FitToPolys.png"></property>
+
+        <!-- MAP EDIT TOOLBAR -->
+        <property name="RVMM_RENAME_MAP_BUTTON_ICON"        value="RenameMap.png"></property>
+        <property name="RVMM_SHUFFLE_MAP_COLORS_BUTTON_ICON"      value="ShuffleColors.png"></property>
+        <property name="RVMM_EDIT_APP_SETTINGS_BUTTON_ICON" value="Settings.png"></property>
+        <property name="RVMM_EDIT_LEADERS_BUTTON_ICON" value="Leaders.png"></property>
+        <property name="RVMM_EDIT_PARENT_REGION_BUTTON_ICON" value="Map.png"></property>
+        <property name="RVMM_EDIT_BROCHURE_BUTTON_ICON" value="Brochure.png"></property>
+        
+        <!-- PROGRAM ICON FILES - FILE TOOLBAR -->        
+        <property name="HELP_BUTTON_ICON"       value="Help.png"></property>
+        <property name="ABOUT_BUTTON_ICON"      value="About.png"></property>
+
+        <!-- ENGLISH IS THE DEFAULT -->
+        <property name="DEFAULT_LANGUAGE"               value="English"></property>
+        <property name="ENGLISH_ABBREVIATION"           value="EN"></property>
+
+    </property_list>
+    <property_options_list>
+        <property_options name="LANGUAGE_OPTIONS">
+            <option>English</option>
+        </property_options>
+        <property_options name="RVMM_CYCLE_METHOD">
+            <option>NO_CYCLE</option>
+            <option>REFLECT</option>
+            <option>REPEAT</option>
+        </property_options>
+    </property_options_list>
+</properties>

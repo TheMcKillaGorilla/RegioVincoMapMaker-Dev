@@ -1,0 +1,31 @@
+work/The World/-Europe-.rvm
+work/The World/-Asia-.rvm
+work/-The World-.rvm
+work/The World/-Africa-.rvm
+work/The World/Europe_Old/-Italy-.rvm
+work/The World/-South America-.rvm
+work/The World/-Oceania-.rvm
+work/The World/-North America-.rvm
+work/The World/-North America_old-.rvm
+work/The World/South America/-Peru-.rvm
+work/The World/Europe/-Sweden-.rvm
+work/The World/South America/-Argentina-.rvm
+work/The World/North America/-United States of America-.rvm
+work/The World/North America/-Canada-.rvm
+work/The World/-Middle East-.rvm
+work/The World/Europe/-Austria-.rvm
+work/The World/Europe/-Albania-.rvm
+work/The World/Europe/-Andorra-.rvm
+work/The World/Tests/-Test1-.rvm
+work/The World/-Tests-.rvm
+work/The World/Tests/-Test2-.rvm
+work/The World/-Merged World-.rvm
+work/The World/Africa/-Togo-.rvm
+work/The World/Asia/-Bangladesh-.rvm
+work/The World/South America/-Bolivia-.rvm
+work/The World/Tests/-Test3-.rvm
+work/The World/Tests/-Test4-.rvm
+work/The World/Junk/-Junk1-.rvm
+work/The World/Tests/Test1/-Test1A-.rvm
+work/The World/Tests/Test1/-Test1B-.rvm
+work/The World/Tests/Test1/-Test1C-.rvm

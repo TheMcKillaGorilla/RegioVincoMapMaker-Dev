@@ -1,0 +1,6 @@
+app/*
+build/*
+dist/*
+nbproject/*
+raw_map_data/*
+work/*

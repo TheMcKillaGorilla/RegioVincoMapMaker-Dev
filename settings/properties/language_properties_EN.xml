@@ -1,0 +1,237 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!--
+    This XML file provides all the text to be used when the application
+    is to be displayed in English.
+-->
+<properties>
+    <property_list>
+
+        <!-- ENGLISH LANGUAGE SETTINGS FOR DESKTOP JAVA FRAMEWORK CONTROLS -->
+
+        <!-- WELCOME DIALOG TEXT -->
+        <property name="WELCOME_DIALOG_TITLE"               value="Welcome to the Regio Vinco Map Maker"></property>
+        <property name="WELCOME_DIALOG_RECENT_WORK_LABEL"   value="Recent Work"></property>
+        <property name="WELCOME_DIALOG_NONE_LABEL"          value="None"></property>
+
+        <!-- GENERIC APP ERROR MESSAGES -->
+        <property name="APP_ERROR_TITLE"            value="Application Error"></property>
+        <property name="APP_ERROR_CONTENT"          value="An Error Occured in the Application"></property>
+
+        <!-- PROPERTIES ERROR MESSAGES -->
+        <property name="PROPERTIES_ERROR_TITLE"     value="Properties File Error"></property>
+        <property name="PROPERTIES_ERROR_CONTENT"   value="There was an Error Loading a Properties File"></property>
+        <property name="PARENT_ERROR_TITLE" value="Error - Illegal Parent"></property>
+        <property name="PARENT_ERROR_CONTENT" value="Parent must contain The World"></property>
+
+        <!-- BUTTON TOOLTIPS -->
+        <property name="NEW_BUTTON_TOOLTIP"         value="New Map"></property>
+        <property name="LOAD_BUTTON_TOOLTIP"        value="Load Map"></property>
+        <property name="CLOSE_BUTTON_TOOLTIP"       value="Close Map"></property>
+        <property name="SAVE_BUTTON_TOOLTIP"        value="Save Map"></property>
+        <property name="EXPORT_BUTTON_TOOLTIP"      value="Export Map"></property>
+        <property name="EXIT_BUTTON_TOOLTIP"        value="Exit"></property>
+        <property name="RVMM_DELETE_BUTTON_TOOLTIP" value="Delete Map"></property>
+        <property name="UNDO_BUTTON_TOOLTIP"        value="Undo"></property>
+        <property name="REDO_BUTTON_TOOLTIP"        value="Redo"></property>
+        <property name="HELP_BUTTON_TOOLTIP"        value="Help"></property>
+        <property name="ABOUT_BUTTON_TOOLTIP"       value="About"></property>
+        <property name="RVMM_RESET_NAVIGATION_BUTTON_TOOLTIP"           value="Reset Navigation"></property>
+        <property name="RVMM_FIT_TO_SUBREGION_BUTTON_TOOLTIP"           value="Fit to Map"></property>
+        <property name="RVMM_SHUFFLE_MAP_COLORS_BUTTON_TOOLTIP"         value="Shuffle Subregion Colors"></property>
+        <property name="RVMM_EDIT_LEADERS_BUTTON_TOOLTIP" value="Edit Leaders"></property>
+        <property name="RVMM_EDIT_PARENT_REGION_BUTTON_TOOLTIP" value="Edit Parent Region"></property>
+        <property name="RVMM_EDIT_BROCHURE_BUTTON_TOOLTIP" value="Edit Brochure"></property>
+        <property name="RVMM_REPORT_ERROR_BUTTON_TOOLTIP" value="Report Error"></property>
+        <property name="RVMM_MOVE_DOWN_BUTTON_TOOLTIP"  value="Move Subregion Down"></property> 
+        <property name="RVMM_MOVE_UP_BUTTON_TOOLTIP"    value="Move Subregion Up"></property>
+        <property name="RVMM_ADD_SUBREGIONS_BUTTON_TOOLTIP" value="Add Subregions via Shapefile"></property>
+        <property name="RVMM_REMOVE_SUBREGION_BUTTON_TOOLTIP" value="Remove Subregion"></property>
+        <property name="WELCOME_DIALOG_NEW_BUTTON_TOOLTIP" value="Make a new Map"></property>
+        <property name="RVMM_ZOOM_LABEL_TEXT" value="Zoom:"></property>
+
+        <!-- BUTTON TEXT -->
+        <property name="WELCOME_DIALOG_NEW_BUTTON_TEXT"     value="Create a New Map"></property>
+        <property name="RVMM_EDIT_BROCHURE_BUTTON_TEXT" value="Edit Brochure"></property>
+
+        <!-- NEW FEEDBACK DIALOGS -->	
+        <property name="NEW_SUCCESS_TITLE"      value="New Complete"></property>
+        <property name="NEW_SUCCESS_CONTENT"	value="Work Created but not yet Saved"></property>
+        <property name="NEW_ERROR_TITLE"        value="Warning: Error"></property>
+        <property name="NEW_ERROR_CONTENT"      value="An error occured creating New work."></property>
+
+        <!-- LOAD FEEDBACK DIALOGS -->
+        <property name="LOAD_WORK_TITLE"        value="Load Work"></property>
+        <property name="LOAD_SUCCESS_TITLE"     value="Load Complete"></property>
+        <property name="LOAD_SUCCESS_CONTENT"   value="The File has Loaded Successfully and can now be edited."></property>
+        <property name="LOAD_ERROR_TITLE"       value="Loading Error"></property>        
+        <property name="LOAD_ERROR_CONTENT"     value="Loading has Failed. Likely there is a File Formating problem."></property>
+
+        <!-- SAVE FEEDBACK DIALOGS -->
+        <property name="SAVE_WORK_TITLE"        value="Save Work"></property>
+        <property name="SAVE_SUCCESS_TITLE"     value="Save Complete"></property>
+        <property name="SAVE_SUCCESS_CONTENT"   value="The file is saved."></property>
+        <property name="SAVE_ERROR_TITLE"       value="Save Error"></property>
+        <property name="SAVE_ERROR_CONTENT"     value="Saving has Failed. Likely due to a file access problem."></property>
+        <property name="SAVE_VERIFY_TITLE"	value="Save unsaved work?"></property>
+        <property name="SAVE_VERIFY_CONTENT"	value="Would you like to save your unsaved work first?"></property>
+
+        <!-- ABOUT DIALOG -->
+        <property name="ABOUT_TITLE"            value="About the Regio Vinco Map Maker"></property>
+        <property name="ABOUT_CONTENT"          value="RVMM, the Regio Vinco Map Maker - Debugging Enterprises - © 2018"></property>
+
+        <!-- OPTIONS TOOLBAR -->
+        <property name="RVMM_TOGGLE_FRAME_PROMPT_LABEL_TEXT"            value="Show Viewport Frame"></property> 
+        <property name="RVMM_TOGGLE_DEBUG_LABEL_TEXT"                   value="Debug"></property>
+        
+        
+        <!-- FOR CHANGING THE REGION NAME IN A POPUP MODAL -->
+        <property name="RVMM_NAME_DIALOG_TITLE" value="RV - Change Region Name"></property>
+        <property name="RVMM_NAME_DIALOG_REGION_NAME_PROMPT_LABEL_TEXT" value="New Name: "></property>
+        <property name="RVMM_NAME_DIALOG_WARNING_LABEL_TEXT" value="Illegal Region Name"></property>
+        <property name="RVMM_NAME_DIALOG_CONFIRM_BUTTON_TEXT" value="Change Name"></property>
+        <property name="RVMM_NAME_DIALOG_CANCEL_BUTTON_TEXT" value="Cancel"></property>
+
+        <!-- SUBREGION TABLE -->
+        <property name="RVMM_REGION_NAME_LABEL_TEXT"                    value="Region Name"></property>
+        <property name="RVMM_NAME_TABLE_COLUMN_TEXT"          value="Name"></property>
+        <property name="RVMM_CAPITAL_TABLE_COLUMN_TEXT"       value="Capital"></property>
+        <property name="RVMM_LEADER_TABLE_COLUMN_TEXT"        value="Leader"></property>
+        <property name="RVMM_LANDMARKS_TABLE_COLUMN_TEXT"       value="Landmarks"></property>
+        <property name="RVMM_FLAG_LINK_TABLE_COLUMN_TEXT"        value="Flag"></property>
+        
+        <!-- BROCHURE DIALOG -->
+        <property name="RVMM_BROCHURE_DIALOG_HEADING_TEXT" value="Brochure"></property>
+        <property name="RVMM_BROCHURE_DIALOG_IMAGE_PROMPT_LABEL_TEXT" value="Brochure Image URL:"></property>
+        <property name="RVMM_BROCHURE_DIALOG_IMAGE_RETRIEVE_BUTTON_TEXT" value="Retrieve"></property>
+        <property name="RVMM_BROCHURE_DIALOG_LINK_PROMPT_LABEL_TEXT" value="Travel Site:"></property>
+        <property name="RVMM_BROCHURE_DIALOG_PREVIEW_BUTTON_TEXT" value="Preview"></property>
+        <property name="RVMM_BROCHURE_DIALOG_CONFIRM_BUTTON_TEXT" value="Confirm"></property>
+        <property name="RVMM_BROCHURE_DIALOG_CANCEL_BUTTON_TEXT" value="Cancel"></property>
+
+        <!-- APP SETTINGS DIALOG -->
+        <property name="RVMM_EXPORT_MAP_DIALOG_TITLE" value="RVMM - Export Map"></property>
+        <property name="RVMM_EXPORT_MAP_DIALOG_EXPORT_HEADING_LABEL_TEXT" value="Export to Directories:"></property>
+        <property name="RVMM_EXPORT_MAP_DIALOG_RVMM_APP_EXPORT_PATH_PROMPT_LABEL_TEXT" value="RVMM Dir: "></property>
+        <property name="RVMM_EXPORT_MAP_DIALOG_GAME_APP_EXPORT_PATH_PROMPT_LABEL_TEXT" value="RV Dir: "></property>
+        <property name="RVMM_EXPORT_MAP_DIALOG_GAME_APP_EXPORT_PATH_EDIT_BUTTON_TEXT" value="✎"></property>
+        <property name="RVMM_EXPORT_MAP_DIALOG_BROCHURE_HEIGHT_LABEL_TEXT" value="Brochure Height:"></property>
+        <property name="RVMM_EXPORT_MAP_DIALOG_FLAG_WIDTH_LABEL_TEXT" value="Flag Width:"></property>
+        <property name="RVMM_EXPORT_MAP_DIALOG_CONFIRM_BUTTON_TEXT" value="Export Map"></property>
+        <property name="RVMM_EXPORT_MAP_DIALOG_CANCEL_BUTTON_TEXT" value="Cancel"></property>
+        <property name="RVMM_EXPORT_MAP_DIALOG_CHANGE_ROOT_GAME_APP_PATH_TITLE" value="Select Root App Path"></property>
+        <property name="ROOT_GAME_APP_PATH_ERROR_TITLE" value="Invalid Path"></property>
+        <property name="ROOT_GAME_APP_PATH_ERROR_CONTENT" value="Path must contain 'data/The World' and 'public/img/The World' directories."></property>
+
+        <!-- LEADERS DIALOG -->
+        <property name="RVMM_LEADERS_DIALOG_HEADING_LABEL_TEXT" value="Leaders"></property>
+        <property name="RVMM_LEADERS_DIALOG_LEADERS_TYPE_PROMPT_LABEL_TEXT" value="Leader Type:"></property>
+        <property name="RVMM_LEADERS_DIALOG_LEADERS_WIKI_PAGE_TYPE_PROMPT_LABEL_TEXT" value="Wiki Leader Page Type:"></property>
+        <property name="RVMM_LEADERS_DIALOG_LEADERS_WIKI_PAGE_URL_PROMPT_LABEL_TEXT" value="Wiki Leader Page URL:"></property>
+        <property name="RVMM_LEADERS_DIALOG_CONFIRM_BUTTON_TEXT" value="Confirm"></property>
+        <property name="RVMM_LEADERS_DIALOG_CANCEL_BUTTON_TEXT" value="Cancel"></property>
+        <property name="RVMM_LEADERS_DIALOG_SUBREGION_NAME_TABLE_COLUMN_TEXT" value="Subregion"></property>
+        <property name="RVMM_LEADERS_DIALOG_CURRENT_LEADER_TABLE_COLUMN_TEXT" value="Leader"></property>
+        <property name="RVMM_LEADERS_DIALOG_FOUND_LEADER_TABLE_COLUMN_TEXT" value="Found Leader"></property>
+        <property name="RVMM_LEADERS_DIALOG_UPDATE_LEADER_TABLE_COLUMN_TEXT" value="Update?"></property>
+        <property name="RVMM_LEADERS_DIALOG_FIND_LEADERS_BUTTON_TEXT" value="Find"></property>
+        <property name="RVMM_LEADERS_DIALOG_UPDATE_LEADERS_BUTTON_TEXT" value="Update"></property>
+
+        <!-- NEW MAP DIALOG -->
+        <property name="RVMM_NEW_MAP_SELECT_PARENT_REGION_DIALOG_TITLE_TEXT" value="Select Map's Parent Region Directory"></property>
+        <property name="RVMM_NEW_MAP_SELECT_SHAPEFILE_DIALOG_TITLE_TEXT" value="Select Shapefile to Import"></property>
+        <property name="RVMM_NEW_MAP_DIALOG_HEADER_LABEL_TEXT"      value="Create New Map"></property>
+        <property name="RVMM_NEW_MAP_DIALOG_NAME_PROMPT_LABEL_TEXT"         value="Region Name:"></property>
+        <property name="RVMM_NEW_MAP_DIALOG_ROOT_APP_DIRECTORY_PROMPT_LABEL_TEXT" value="Root App (i.e. export) Path:"></property>
+        <property name="RVMM_NEW_MAP_DIALOG_PARENT_REGION_PROMPT_LABEL_TEXT"          value="Parent Region:"></property>
+        <property name="RVMM_NEW_MAP_DIALOG_PARENT_REGION_LABEL_TEXT"           value="Not Selected"></property>
+        <property name="RVMM_NEW_MAP_DIALOG_PARENT_REGION_EDIT_BUTTON_TEXT"     value="✎"></property>
+        <property name="RVMM_NEW_MAP_DIALOG_SHAPEFILE_PROMPT_LABEL_TEXT"                 value="Shapefile:"></property>
+        <property name="RVMM_NEW_MAP_DIALOG_SHAPEFILE_LABEL_TEXT"                  value="Not Selected"></property>
+        <property name="RVMM_NEW_MAP_DIALOG_SHAPEFILE_EDIT_BUTTON_TEXT"     value="✎"></property>
+        <property name="RVMM_NEW_MAP_DIALOG_WARNING_LABEL_TEXT" value="Warning: Region/Parent Combo Cannot be Created"></property>
+        <property name="RVMM_NEW_MAP_DIALOG_CONFIRM_BUTTON_TEXT"                        value="Confirm"></property>            
+        <property name="RVMM_NEW_MAP_DIALOG_CANCEL_BUTTON_TEXT"                    value="Cancel"></property>
+
+        <!-- PARENT REGION DIALOG -->
+        <property name="RVMM_PARENT_REGION_DIALOG_HEADING_LABEL_TEXT" value="Parent Region"></property>
+        <property name="RVMM_PARENT_REGION_DIALOG_CONFIRM_BUTTON_TEXT" value="Confirm"></property>
+        <property name="RVMM_PARENT_REGION_DIALOG_CANCEL_BUTTON_TEXT" value="Cancel"></property>
+
+        <!-- SUBREGION DIALOG -->
+        <property name="RVMM_SUBREGION_DIALOG_HEADER_LABEL_TEXT" value="Subregion"></property>
+        <property name="RVMM_SUBREGION_DIALOG_PREVIOUS_BUTTON_TEXT" value="Previous"></property>
+        <property name="RVMM_SUBREGION_DIALOG_NEXT_BUTTON_TEXT" value="Next"></property>
+        <property name="RVMM_SUBREGION_DIALOG_NAME_PROMPT_LABEL_TEXT" value="Name:"></property>
+        <property name="RVMM_SUBREGION_DIALOG_CAPITAL_PROMPT_LABEL_TEXT" value="Capital:"></property>
+        <property name="RVMM_SUBREGION_DIALOG_LEADER_PROMPT_LABEL_TEXT" value="Leader:"></property>
+        <property name="RVMM_SUBREGION_DIALOG_FLAG_LINK_PROMPT_LABEL_TEXT" value="Flag Image URL:"></property>
+        <property name="RVMM_SUBREGION_DIALOG_TERRITORY_PROMPT_LABEL_TEXT" value="Territory:"></property>
+        <property name="RVMM_SUBREGION_DIALOG_DOWNLOAD_FLAG_IMAGE_BUTTON_TEXT" value="Download Flag"></property>
+        <property name="RVMM_SUBREGION_DIALOG_DOWNLOAD_ALL_FLAG_IMAGES_BUTTON_TEXT" value="Download All Flags"></property>
+        <property name="RVMM_SUBREGION_DIALOG_LANDMARKS_LABEL_TEXT" value="Landmarks"></property>
+        <property name="RVMM_SUBREGION_DIALOG_REMOVE_LANDMARK_BUTTON_TEXT" value="-"></property>
+        <property name="RVMM_SUBREGION_DIALOG_ADD_LANDMARK_PROMPT_LABEL_TEXT" value="New Landmark: "></property>
+        <property name="RVMM_SUBREGION_DIALOG_ADD_LANDMARK_BUTTON_TEXT" value="+"></property>
+        <property name="RVMM_SUBREGION_DIALOG_OK_BUTTON_TEXT" value="Ok"></property>
+        <property name="RVMM_SUBREGION_DIALOG_CANCEL_BUTTON_TEXT" value="Cancel"></property>
+        
+        <!-- USED DURING SAVING/LOADING FILES -->               
+        <property name="WORK_FILE_EXT"          value="*.rvm"></property>
+	<property name="WORK_FILE_EXT_DESC"     value="Regio Vinco Maps"></property>
+        <property name="RAW_MAP_FILE_EXT"       value=".shp"></property>
+        <property name="RAW_MAP_FILE_EXT_DESC"  value="Raw Map SHP Files"></property>
+
+        <property name="RVMM_DEFAULT_SUBREGION_TYPE"      value="-"></property>
+        <property name="RVMM_DEFAULT_LEADER_TYPE" value="-"></property>
+        <property name="RVMM_DEFAULT_LEADERS_WIKI_PAGE_TYPE"    value="-"></property>
+    </property_list>
+    
+    <!-- TDLM COMBO BOX CHOICES -->
+    <property_options_list>
+        <property_options name="RVMM_LEADER_TYPES">
+            <option>-</option>
+            <option>Governors</option>
+            <option>Heads of State</option>
+            <option>Mayors</option>
+            <option>Presidents</option>
+        </property_options>
+        <property_options name="RVMM_SUBREGION_TYPES">
+            <option>-</option>
+            <option>Autonomous Community</option>
+            <option>Borough</option>
+            <option>Canton</option>
+            <option>Commune</option>
+            <option>Continent</option>
+            <option>County</option>
+            <option>Country</option>
+            <option>Department</option>
+            <option>District</option>
+            <option>Governorate</option>
+            <option>Islands</option>
+            <option>Municipality</option>
+            <option>Neighborhood</option>
+            <option>Oblast</option>
+            <option>Parish</option>
+            <option>Prefecture</option>
+            <option>Province</option>
+            <option>Regency</option>
+            <option>Region</option>
+            <option>Sector</option>
+            <option>State</option>
+            <option>Subdistrict</option>
+            <option>Territory</option>
+            <option>Village</option>
+        </property_options>
+        <property_options name="RVMM_LEADERS_WIKI_PAGE_TYPES">
+            <option>-</option>
+            <option>HEADS_OF_STATE_PAGE</option>
+            <option>LEADERS_PAGE</option>
+            <option>REGIONS_PAGE</option>
+        </property_options> 
+        <property_options name="LANGUAGE_OPTIONS">
+            <option>English</option>
+            <option>Korean</option>
+            <option>Spanish</option>
+        </property_options>
+    </property_options_list>
+</properties>
