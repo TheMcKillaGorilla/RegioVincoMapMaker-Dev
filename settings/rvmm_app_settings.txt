@@ -2,5 +2,5 @@ Brochures Height:500
 Export Map Size in MB:3.0
 Export to Game App:true
 Export to RVMM App:true
-Root Game App Path:/C:/Users/rtmck/Documents/temp/Regio Vinco/dev/game/regiovincogame/app/
+Root Game App Path:/C:/Users/chris/OneDrive/Desktop/temp_app
 Flags Width:200
