@@ -1,6 +1,17 @@
 app/*
 build/*
 dist/*
+nbproject/*
 orig_images/*
 raw_map_data/*
 work/*
+*.txt
+nbproject/jfx-impl_backup.xml
+nbproject/private/configs/RegioVincoMapMakerApp.properties
+src/rvmm/TestRelativize.java
+nbproject/jfx-impl.xml
+nbproject/private/configs/RegioVincoMapMakerApp.properties
+nbproject/jfx-impl_backup.xml
+nbproject/private/private.properties
+settings/recent/RecentWork.txt
+settings/rvmm_app_settings.txt
