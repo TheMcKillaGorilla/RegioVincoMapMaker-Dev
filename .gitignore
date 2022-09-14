@@ -1,6 +1,6 @@
 app/*
 build/*
 dist/*
-nbproject/*
+orig_images/*
 raw_map_data/*
 work/*

@@ -226,7 +226,7 @@
             <option>-</option>
             <option>HEADS_OF_STATE_PAGE</option>
             <option>LEADERS_PAGE</option>
-            <option>REGIONS_PAGE</option>
+            <option>SUBREGIONS_PAGE</option>
         </property_options> 
         <property_options name="LANGUAGE_OPTIONS">
             <option>English</option>

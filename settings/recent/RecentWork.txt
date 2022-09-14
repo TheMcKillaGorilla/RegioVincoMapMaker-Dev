@@ -1,21 +1,60 @@
-work/The World/-Europe-.rvm
-work/The World/-Asia-.rvm
-work/-The World-.rvm
+work/The World/Europe/-Albania-.rvm
 work/The World/-Africa-.rvm
+work/The World/Europe/-North Macedonia-.rvm
+work/The World/Europe/-Northern Ireland-.rvm
+work/The World/Europe/-Northern Ireland 2-.rvm
+work/The World/Europe/-Northern Ireland 3-.rvm
+work/The World/Europe/-Cyprus-.rvm
+work/The World/Europe/-Montenegro-.rvm
+work/The World/Europe/-England-.rvm
+work/The World/Europe/-Estonia-.rvm
+work/The World/Europe/-Moldova-.rvm
+work/The World/Europe/-Bosnia and Herzegovina-.rvm
+work/The World/Europe/-Old North Macedonia-.rvm
+work/The World/Europe/-Portugal-.rvm
+work/The World/Europe/-United Kingdom-.rvm
+work/The World/Europe/-Romania-.rvm
+work/The World/Europe/-Ukraine-.rvm
+work/The World/Europe/-Switzerland-.rvm
+work/The World/Europe/-Sweden-.rvm
+work/The World/Europe/-Spain-.rvm
+work/The World/Europe/-Slovakia-.rvm
+work/The World/Europe/-Serbia-.rvm
+work/The World/Europe/-Poland-.rvm
+work/The World/Europe/-Netherlands-.rvm
+work/The World/Europe/-Luxembourg-.rvm
+work/The World/Europe/-Lithuania-.rvm
+work/The World/Europe/-Liechtenstein-.rvm
+work/The World/Europe/-Ireland-.rvm
+work/The World/Europe/-Hungary-.rvm
+work/The World/Europe/-Germany-.rvm
+work/The World/Europe/-Denmark-.rvm
+work/The World/Europe/-Czechia-.rvm
+work/The World/Europe/-Bulgaria-.rvm
+work/The World/Europe/-Slovenia-.rvm
+work/The World/Europe/-Italy-.rvm
+work/The World/Europe/-Greece-.rvm
+work/The World/Europe/-France-.rvm
+work/The World/Europe/-Finland-.rvm
+work/The World/Europe/-Croatia-.rvm
+work/The World/Europe/-Norway-.rvm
+work/The World/Europe/-Belgium-.rvm
+work/The World/Europe/-Belarus-.rvm
+work/The World/Europe/-Austria-.rvm
+work/The World/Europe/-Andorra-.rvm
+work/-The World-.rvm
+work/The World/-Asia-.rvm
+work/The World/-Europe-.rvm
 work/The World/Europe_Old/-Italy-.rvm
 work/The World/-South America-.rvm
 work/The World/-Oceania-.rvm
 work/The World/-North America-.rvm
 work/The World/-North America_old-.rvm
 work/The World/South America/-Peru-.rvm
-work/The World/Europe/-Sweden-.rvm
 work/The World/South America/-Argentina-.rvm
 work/The World/North America/-United States of America-.rvm
 work/The World/North America/-Canada-.rvm
 work/The World/-Middle East-.rvm
-work/The World/Europe/-Austria-.rvm
-work/The World/Europe/-Albania-.rvm
-work/The World/Europe/-Andorra-.rvm
 work/The World/Tests/-Test1-.rvm
 work/The World/-Tests-.rvm
 work/The World/Tests/-Test2-.rvm
