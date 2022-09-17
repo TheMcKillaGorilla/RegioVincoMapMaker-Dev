@@ -192,7 +192,9 @@
             <option>-</option>
             <option>Governors</option>
             <option>Heads of State</option>
+            <option>Intendant</option>
             <option>Mayors</option>
+            <option>Prefect</option>
             <option>Presidents</option>
         </property_options>
         <property_options name="RVMM_SUBREGION_TYPES">

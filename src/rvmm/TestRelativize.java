@@ -6,7 +6,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 public class TestRelativize {
-    public static void main(String[] args) {
+    /*public static void main(String[] args) {
         try {
             System.out.println("Test Relativize");
             Path pathAbsolute = Paths.get("/C:/Users/rtmck/Documents/temp/Regio Vinco/dev/game/regiovincogame/app/");
@@ -16,5 +16,5 @@ public class TestRelativize {
         } catch (Exception e) {
             e.printStackTrace();
         }
-    }
+    }*/
 }
