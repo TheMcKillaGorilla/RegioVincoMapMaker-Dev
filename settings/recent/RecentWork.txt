@@ -1,3 +1,18 @@
+work/The World/South America/-Trinidad and Tobago-.rvm
+work/The World/-South America-.rvm
+work/The World/South America/-French Guiana-.rvm
+work/The World/South America/-Suriname-.rvm
+work/The World/South America/-Guyana-.rvm
+work/The World/South America/-Venezuela-.rvm
+work/The World/South America/-Uruguay-.rvm
+work/The World/South America/-Argentina-.rvm
+work/The World/South America/-Bolivia-.rvm
+work/The World/South America/-Brazil-.rvm
+work/The World/South America/-Chile-.rvm
+work/The World/South America/-Colombia-.rvm
+work/The World/South America/-Ecuador-.rvm
+work/The World/South America/-Peru-.rvm
+work/The World/South America/-Paraguay-.rvm
 work/The World/Europe/-Albania-.rvm
 work/The World/-Africa-.rvm
 work/The World/Europe/-North Macedonia-.rvm
@@ -46,12 +61,9 @@ work/-The World-.rvm
 work/The World/-Asia-.rvm
 work/The World/-Europe-.rvm
 work/The World/Europe_Old/-Italy-.rvm
-work/The World/-South America-.rvm
 work/The World/-Oceania-.rvm
 work/The World/-North America-.rvm
 work/The World/-North America_old-.rvm
-work/The World/South America/-Peru-.rvm
-work/The World/South America/-Argentina-.rvm
 work/The World/North America/-United States of America-.rvm
 work/The World/North America/-Canada-.rvm
 work/The World/-Middle East-.rvm
@@ -61,7 +73,6 @@ work/The World/Tests/-Test2-.rvm
 work/The World/-Merged World-.rvm
 work/The World/Africa/-Togo-.rvm
 work/The World/Asia/-Bangladesh-.rvm
-work/The World/South America/-Bolivia-.rvm
 work/The World/Tests/-Test3-.rvm
 work/The World/Tests/-Test4-.rvm
 work/The World/Junk/-Junk1-.rvm

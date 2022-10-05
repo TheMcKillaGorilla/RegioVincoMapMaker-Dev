@@ -243,7 +243,6 @@ public class LeadersDialog extends Stage {
         ArrayList<SubregionData> subregionData = makeSubregionData();
         RegioVincoMapMakerData data = (RegioVincoMapMakerData)this.app.getDataComponent();
         String regionName = data.getRegionName();
-
         String wikiPageTypeText = this.leadersWikiPageTypeComboBox.getSelectionModel().getSelectedItem().toString();
         RVLeadersWikiPageType type = RVLeadersWikiPageType.valueOf(wikiPageTypeText);
         HashMap<String, String> newLeaders = RVLeaders.getAllLeaders(
