@@ -11,7 +11,6 @@
     app uses icons from https://material.io/icons/ and icon image sizes in
     use are as follows:
         djf top toolbar buttons: 36x36
-        
 
     @author Richard McKenna
     @version 1.0
@@ -123,9 +122,16 @@
     -fx-minor-tick-count: 1;
     -fx-show-tick-labels: true;
     -fx-snap-to-ticks: true;
-    -fx-block-increment: 50;
-    -fx-min-width:400px;
-    -fx-max-width:400px; 
+    -fx-block-increment: 5;
+    -fx-font-size: 16pt;
+}
+.rvmm_font_slider {
+    -fx-show-tick-labels: false;
+    -fx-show-tick-marks: false;
+    -fx-major-tick-unit: 1;
+    -fx-minor-tick-count: 1;
+    -fx-snap-to-ticks: true;
+    -fx-block-increment: 1;
     -fx-font-size: 16pt;
 }
 
@@ -204,6 +210,11 @@ TextInputDialog {
 .rvmm_combo_box {
     -fx-font-size:16pt;
     -fx-font-weight:bold;
+}
+.rvmm_dialog_value_label {
+    -fx-text-fill:red;
+    -fx-font-weight:bold;
+    -fx-font-size:20pt;
 }
 .rvmm_button {
     -fx-min-width:100px;

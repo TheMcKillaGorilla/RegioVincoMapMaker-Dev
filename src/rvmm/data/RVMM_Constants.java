@@ -10,6 +10,8 @@ public class RVMM_Constants {
     public static final String RVMM_TEST_EXPORT_FILEPATH = "export/ExportData.json";
     public static final String RVMM_ORIG_IMAGES_PATH = "orig_images/";
     public static final String TEMP_BROCHURE_PATH = "images/TempBrochure.png";
+    public static final String STAMP_WEB_PAGE = "settings/web/VisaGenerator.html";
+    public static final String STAMP_FILE_PATH = "settings/web/VisaStamp.json";
     
     // DEFAULT VALUES FOR OUR APP AND MAPS
     public static final double DEFAULT_SCALE = 1;

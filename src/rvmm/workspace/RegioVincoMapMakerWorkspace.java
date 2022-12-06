@@ -41,6 +41,7 @@ import rvmm.workspace.dialogs.ParentRegionDialog;
 import rvmm.workspace.dialogs.NameDialog;
 import rvmm.workspace.dialogs.NewMapDialog;
 import rvmm.workspace.dialogs.SubregionDialog;
+import rvmm.workspace.dialogs.VisaDialog;
 import static rvmm.workspace.style.RVMMStyle.*;
 
 public class RegioVincoMapMakerWorkspace extends AppWorkspaceComponent {
@@ -48,6 +49,7 @@ public class RegioVincoMapMakerWorkspace extends AppWorkspaceComponent {
     ExportMapDialog exportMapDialog;
     NameDialog nameDialog;
     LeadersDialog leadersDialog;
+    VisaDialog visaDialog;
     ParentRegionDialog mapSettingsDialog;
     NewMapDialog newMapDialog;
     SubregionDialog subregionDialog;
@@ -72,6 +74,7 @@ public class RegioVincoMapMakerWorkspace extends AppWorkspaceComponent {
         brochureDialog = BrochureDialog.getBrochureDialog(app);
         exportMapDialog = ExportMapDialog.getExportMapDialog(app);
         leadersDialog = LeadersDialog.getLeadersDialog(app);
+        visaDialog = VisaDialog.getVisaDialog(app);
         mapSettingsDialog = ParentRegionDialog.getMapSettingsDialog(app);
         nameDialog = NameDialog.getNameDialog(app);
         newMapDialog = NewMapDialog.getNewMapDialog(app);
@@ -109,6 +112,7 @@ public class RegioVincoMapMakerWorkspace extends AppWorkspaceComponent {
         // MAP SETTINGS PANE
         HBox settingsPane = rvmmBuilder.buildHBox(RVMM_SETTINGS_PANE, topToolbarPane, CLASS_DJF_TOOLBAR_PANE, ENABLED);
         rvmmBuilder.buildIconButton(RVMM_EDIT_LEADERS_BUTTON, settingsPane, CLASS_DJF_ICON_BUTTON, ENABLED);
+        rvmmBuilder.buildIconButton(RVMM_EDIT_VISA_BUTTON, settingsPane, CLASS_DJF_ICON_BUTTON, ENABLED);
         rvmmBuilder.buildIconButton(RVMM_EDIT_PARENT_REGION_BUTTON, settingsPane, CLASS_DJF_ICON_BUTTON, ENABLED);
         rvmmBuilder.buildIconButton(RVMM_EDIT_BROCHURE_BUTTON, settingsPane, CLASS_DJF_ICON_BUTTON, ENABLED);
                 
@@ -321,6 +325,9 @@ public class RegioVincoMapMakerWorkspace extends AppWorkspaceComponent {
         ((Button) gui.getGUINode(RVMM_EDIT_LEADERS_BUTTON)).setOnAction(e -> {
             mapEditController.processEditLeaders();
         });
+        ((Button) gui.getGUINode(RVMM_EDIT_VISA_BUTTON)).setOnAction(e -> {
+            mapEditController.processEditVisa();
+        });
         ((Button) gui.getGUINode(RVMM_EDIT_PARENT_REGION_BUTTON)).setOnAction(e -> {
             mapEditController.processEditMapSettings();
         });
@@ -442,7 +449,8 @@ public class RegioVincoMapMakerWorkspace extends AppWorkspaceComponent {
             data.setRegionName(regionName);
 
             try {
-                app.getFileComponent().importData(app.getDataComponent(), newMapDialog.getShapefilePath());
+                app.getFileComponent().importData(app.getDataComponent(), newMapDialog.getShpPath());
+// @todo IMPORT DBF DATA                
             } catch (IOException ioe) {
                 System.out.println("ERROR IMPORTING MAP");
             }

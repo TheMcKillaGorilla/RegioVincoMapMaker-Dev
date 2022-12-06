@@ -75,6 +75,7 @@
         <property name="RVMM_SHUFFLE_MAP_COLORS_BUTTON_ICON"      value="ShuffleColors.png"></property>
         <property name="RVMM_EDIT_APP_SETTINGS_BUTTON_ICON" value="Settings.png"></property>
         <property name="RVMM_EDIT_LEADERS_BUTTON_ICON" value="Leaders.png"></property>
+        <property name="RVMM_EDIT_VISA_BUTTON_ICON" value="Visa.png"></property>
         <property name="RVMM_EDIT_PARENT_REGION_BUTTON_ICON" value="Map.png"></property>
         <property name="RVMM_EDIT_BROCHURE_BUTTON_ICON" value="Brochure.png"></property>
         

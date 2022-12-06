@@ -9,6 +9,10 @@ public class MapDataKeys {
     public static final String APP_SETTINGS_ROOT_GAME_APP_PATH = "Root Game App Path:";
     public static final String APP_SETTINGS_FLAGS_WIDTH = "Flags Width:";
     
+    // FOR DATA FILE TYPES
+    public static final String SHP_FILE_TYPE = "SHP";
+    public static final String DBF_FILE_TYPE = "DBF";
+    
     // FOR IMPORTING RAW MAP DATA IN ORDER TO MAKE A NEW MAP
     public static final String RAW_MAP_NUMBER_OF_SUBREGIONS = "NUMBER_OF_SUBREGIONS";
     public static final String RAW_MAP_SUBREGIONS = "SUBREGIONS";
@@ -41,6 +45,7 @@ public class MapDataKeys {
     public static final String RVM_SCALE = "scale";
     public static final String RVM_TRANSLATE_X = "translate_x";
     public static final String RVM_TRANSLATE_Y = "translate_y";
+    public static final String RVM_VISA_PROPERTIES = "visa_properties";
     public static final String RVM_SUBREGIONS = "subregions";
     public static final String RVM_CAPITAL = "capital";
     public static final String RVM_LEADER = "leader";

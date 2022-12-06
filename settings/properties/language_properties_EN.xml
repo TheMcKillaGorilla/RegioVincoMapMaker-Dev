@@ -39,6 +39,7 @@
         <property name="RVMM_FIT_TO_SUBREGION_BUTTON_TOOLTIP"           value="Fit to Map"></property>
         <property name="RVMM_SHUFFLE_MAP_COLORS_BUTTON_TOOLTIP"         value="Shuffle Subregion Colors"></property>
         <property name="RVMM_EDIT_LEADERS_BUTTON_TOOLTIP" value="Edit Leaders"></property>
+        <property name="RVMM_EDIT_VISA_BUTTON_TOOLTIP" value="Edit Visa"></property>
         <property name="RVMM_EDIT_PARENT_REGION_BUTTON_TOOLTIP" value="Edit Parent Region"></property>
         <property name="RVMM_EDIT_BROCHURE_BUTTON_TOOLTIP" value="Edit Brochure"></property>
         <property name="RVMM_REPORT_ERROR_BUTTON_TOOLTIP" value="Report Error"></property>
@@ -136,18 +137,41 @@
         <property name="RVMM_LEADERS_DIALOG_FIND_LEADERS_BUTTON_TEXT" value="Find"></property>
         <property name="RVMM_LEADERS_DIALOG_UPDATE_LEADERS_BUTTON_TEXT" value="Update"></property>
 
+        <!-- VISA DIALOG -->
+        <property name="RVMM_VISA_DIALOG_HEADING_LABEL_TEXT" value="Visa"></property>
+        <property name="RVMM_VISA_DIALOG_STAMP_TYPE_LABEL_TEXT" value="Stamp Type:"></property>
+        <property name="RVMM_VISA_DIALOG_STAMP_TYPE_DEFAULT" value="ARROW"></property>
+        <property name="RVMM_VISA_DIALOG_DATE_FORMAT_LABEL_TEXT" value="Date Format:"></property>
+        <property name="RVMM_VISA_DIALOG_DATE_FORMAT_DEFAULT" value="ISO_DATE"></property>
+        <property name="RVMM_VISA_DIALOG_STAMP_COLOR_LABEL_TEXT" value="Color:"></property>
+        <property name="RVMM_VISA_DIALOG_STAMP_LENGTH_LABEL_TEXT" value="Length:"></property>
+        <property name="RVMM_VISA_DIALOG_NAME_Y_LABEL_TEXT" value="Name Y:"></property>
+        <property name="RVMM_VISA_DIALOG_DATE_Y_LABEL_TEXT" value="Date Y:"></property>
+        <property name="RVMM_VISA_DIALOG_FONT_FAMILY_LABEL_TEXT" value="Font Family:"></property>
+        <property name="RVMM_VISA_DIALOG_FONT_FAMILY_DEFAULT" value="Monospace"></property>
+        <property name="RVMM_VISA_DIALOG_NAME_FONT_SIZE_LABEL_TEXT" value="Name Font Size:"></property>
+        <property name="RVMM_VISA_DIALOG_DATE_FONT_SIZE_LABEL_TEXT" value="Date Font Size:"></property>
+        <property name="RVMM_VISA_DIALOG_BORDER_THICKNESS_LABEL_TEXT" value="Border Thickness:"></property>
+        <property name="RVMM_VISA_DIALOG_CONFIRM_BUTTON_TEXT" value="Confirm"></property>
+        <property name="RVMM_VISA_DIALOG_CANCEL_BUTTON_TEXT" value="Cancel"></property>
+            
         <!-- NEW MAP DIALOG -->
         <property name="RVMM_NEW_MAP_SELECT_PARENT_REGION_DIALOG_TITLE_TEXT" value="Select Map's Parent Region Directory"></property>
-        <property name="RVMM_NEW_MAP_SELECT_SHAPEFILE_DIALOG_TITLE_TEXT" value="Select Shapefile to Import"></property>
+        <property name="RVMM_NEW_MAP_SELECT_SHP_DIALOG_TITLE_TEXT" value="Select .shp file to Import"></property>
+        <property name="RVMM_NEW_MAP_SELECT_DBF_DIALOG_TITLE_TEXT" value="Select .dbf file to Import"></property>
         <property name="RVMM_NEW_MAP_DIALOG_HEADER_LABEL_TEXT"      value="Create New Map"></property>
         <property name="RVMM_NEW_MAP_DIALOG_NAME_PROMPT_LABEL_TEXT"         value="Region Name:"></property>
         <property name="RVMM_NEW_MAP_DIALOG_ROOT_APP_DIRECTORY_PROMPT_LABEL_TEXT" value="Root App (i.e. export) Path:"></property>
         <property name="RVMM_NEW_MAP_DIALOG_PARENT_REGION_PROMPT_LABEL_TEXT"          value="Parent Region:"></property>
         <property name="RVMM_NEW_MAP_DIALOG_PARENT_REGION_LABEL_TEXT"           value="Not Selected"></property>
         <property name="RVMM_NEW_MAP_DIALOG_PARENT_REGION_EDIT_BUTTON_TEXT"     value="✎"></property>
-        <property name="RVMM_NEW_MAP_DIALOG_SHAPEFILE_PROMPT_LABEL_TEXT"                 value="Shapefile:"></property>
-        <property name="RVMM_NEW_MAP_DIALOG_SHAPEFILE_LABEL_TEXT"                  value="Not Selected"></property>
-        <property name="RVMM_NEW_MAP_DIALOG_SHAPEFILE_EDIT_BUTTON_TEXT"     value="✎"></property>
+        <property name="RVMM_NEW_MAP_DIALOG_SHP_PROMPT_LABEL_TEXT"                 value=".shp file:"></property>
+        <property name="RVMM_NEW_MAP_DIALOG_SHP_LABEL_TEXT"                  value="Not Selected"></property>
+        <property name="RVMM_NEW_MAP_DIALOG_SHP_EDIT_BUTTON_TEXT"     value="✎"></property>
+        <property name="RVMM_NEW_MAP_DIALOG_DBF_PROMPT_LABEL_TEXT"                 value=".dbf file:"></property>
+        <property name="RVMM_NEW_MAP_DIALOG_DBF_LABEL_TEXT"                  value="Not Selected"></property>
+        <property name="RVMM_NEW_MAP_DIALOG_DBF_EDIT_BUTTON_TEXT"     value="✎"></property>
+        <property name="RVMM_NEW_MAP_DIALOG_DBF_FIELD_PROMPT_LABEL_TEXT"     value="DBF Field:"></property>
         <property name="RVMM_NEW_MAP_DIALOG_WARNING_LABEL_TEXT" value="Warning: Region/Parent Combo Cannot be Created"></property>
         <property name="RVMM_NEW_MAP_DIALOG_CONFIRM_BUTTON_TEXT"                        value="Confirm"></property>            
         <property name="RVMM_NEW_MAP_DIALOG_CANCEL_BUTTON_TEXT"                    value="Cancel"></property>
@@ -177,7 +201,7 @@
         
         <!-- USED DURING SAVING/LOADING FILES -->               
         <property name="WORK_FILE_EXT"          value="*.rvm"></property>
-	<property name="WORK_FILE_EXT_DESC"     value="Regio Vinco Maps"></property>
+        <property name="WORK_FILE_EXT_DESC"     value="Regio Vinco Maps"></property>
         <property name="RAW_MAP_FILE_EXT"       value=".shp"></property>
         <property name="RAW_MAP_FILE_EXT_DESC"  value="Raw Map SHP Files"></property>
 
@@ -190,24 +214,34 @@
     <property_options_list>
         <property_options name="RVMM_LEADER_TYPES">
             <option>-</option>
+            <option>Administrator</option>
+            <option>Akim</option>
+            <option>Commissioner</option>
             <option>Governors</option>
             <option>Heads of State</option>
             <option>Intendant</option>
             <option>Mayors</option>
+            <option>Minister of State</option>
             <option>Prefect</option>
+            <option>Premier</option>
             <option>Presidents</option>
+            <option>Superintendents</option>
         </property_options>
         <property_options name="RVMM_SUBREGION_TYPES">
             <option>-</option>
             <option>Autonomous Community</option>
+            <option>Autonomous Island</option>
             <option>Borough</option>
             <option>Canton</option>
             <option>Commune</option>
             <option>Continent</option>
+            <option>Council Area</option>
             <option>County</option>
             <option>Country</option>
             <option>Department</option>
             <option>District</option>
+            <option>Division</option>
+            <option>Federal Subject</option>
             <option>Governorate</option>
             <option>Islands</option>
             <option>Municipality</option>
@@ -234,6 +268,32 @@
             <option>English</option>
             <option>Korean</option>
             <option>Spanish</option>
+        </property_options>
+        <property_options name="RVMM_VISA_DIALOG_STAMP_TYPE_OPTIONS">
+            <option>ARROW</option>
+            <option>CIRCLE</option>
+            <option>DIAMOND</option>
+            <option>ELLIPSE</option>
+            <option>HEXAGON</option>
+            <option>INDENTED_RECTANGLE</option>
+            <option>ROUNDED_RECTANGLE</option>
+            <option>ROUNDED_TRIANGLE</option>
+        </property_options>
+        <property_options name="RVMM_VISA_DIALOG_DATE_FORMAT_OPTIONS">
+            <option>ISO_DATE</option>
+            <option>LONG_DATE</option>
+            <option>SHORT_DATE</option>
+        </property_options>
+        <property_options name="RVMM_VISA_DIALOG_FONT_FAMILY_OPTIONS">
+            <option>Arial</option>
+            <option>Brush Script MT</option>
+            <option>Courier New</option>
+            <option>Garamond</option>
+            <option>Georgia</option>
+            <option>Tahoma</option>
+            <option>Times New Roman</option>
+            <option>Trebuchet MS</option>
+            <option>Verdana</option>
         </property_options>
     </property_options_list>
 </properties>

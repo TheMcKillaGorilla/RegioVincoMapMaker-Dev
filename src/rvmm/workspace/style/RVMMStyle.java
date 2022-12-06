@@ -23,6 +23,7 @@ public class RVMMStyle {
     public static final String CLASS_RVMM_COLOR_PICKER  = "rvmm_color_picker";
     public static final String CLASS_RVMM_COMBO_BOX     = "rvmm_combo_box";
     public static final String CLASS_RVMM_SLIDER        = "rvmm_slider";
+    public static final String CLASS_RVMM_FONT_SLIDER   = "rvmm_font_slider";
     public static final String CLASS_RVMM_TABLE_VIEW    = "rvmm_table_view";
     public static final String CLASS_RVMM_TABLE_COLUMN  = "rvmm_table_column";
     public static final String CLASS_RVMM_PANE          = "rvmm_pane";
@@ -38,6 +39,7 @@ public class RVMMStyle {
     public static final String CLASS_RVMM_DIALOG_GRID           = "rvmm_dialog_grid";
     public static final String CLASS_RVMM_DIALOG_HEADER         = "rvmm_dialog_header";
     public static final String CLASS_RVMM_DIALOG_PROMPT         = "rvmm_dialog_prompt";
+    public static final String CLASS_RVMM_DIALOG_VALUE_LABEL    = "rvmm_dialog_value_label";
     public static final String CLASS_RVMM_DIALOG_TEXT_FIELD     = "rvmm_dialog_text_field";
     public static final String CLASS_RVMM_DIALOG_PROMPT_BUTTON  = "rvmm_dialog_prompt_button";
     public static final String CLASS_RVMM_DIALOG_LIST_VIEW      = "rvmm_dialog_list_view";

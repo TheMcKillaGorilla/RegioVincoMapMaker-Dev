@@ -13,6 +13,7 @@ import java.io.InputStream;
 import java.io.OutputStream;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+import java.math.BigDecimal;
 import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -27,6 +28,7 @@ import java.util.Iterator;
 import java.util.Map;
 import javafx.collections.ObservableList;
 import javafx.scene.control.Alert;
+import javafx.scene.control.Alert.AlertType;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Polygon;
 import javax.imageio.ImageIO;
@@ -42,6 +44,7 @@ import javax.json.JsonWriter;
 import javax.json.JsonWriterFactory;
 import javax.json.stream.JsonGenerator;
 import org.apache.commons.io.FileUtils;
+import rvmm.RegioVincoMapMakerApp;
 import static rvmm.data.MapDataKeys.*;
 import static rvmm.data.RVMM_Constants.DEFAULT_MAP_HEIGHT;
 import static rvmm.data.RVMM_Constants.DEFAULT_MAP_WIDTH;
@@ -49,6 +52,11 @@ import static rvmm.data.RVMM_Constants.WORK_FILE_EXT;
 import static rvmm.data.RVMM_Constants.WORK_PATH;
 import rvmm.data.RegioVincoMapMakerData;
 import rvmm.data.SubregionPrototype;
+import rvmm.data.VisaProperty;
+import rvmm.files.dbf.DBFException;
+import rvmm.files.dbf.DBFField;
+import rvmm.files.dbf.DBFReader;
+import rvmm.files.dbf.DBFUtils;
 import rvmm.files.shp.SHPData;
 import rvmm.files.shp.SHPToJSONConverter;
 import rvmm.workspace.DebugDisplay;
@@ -177,7 +185,7 @@ public class RegioVincoFiles implements AppFileComponent {
 
         return scaledImage;
     }
-    
+
     public void saveData(AppDataComponent data, String filePath) throws IOException {
         // GET THE DATA
         RegioVincoMapMakerData rvmmData = (RegioVincoMapMakerData) data;
@@ -202,6 +210,7 @@ public class RegioVincoFiles implements AppFileComponent {
         double mapScale = rvmmData.getMapNavigator().getScale();
         double mapTranslateX = rvmmData.getMapNavigator().getMapTranslateX();
         double mapTranslateY = rvmmData.getMapNavigator().getMapTranslateY();
+        JsonObject visaPropertiesJSO = makeVisaPropertiesJSO(rvmmData.cloneVisaProperties());
         JsonArray subregionsJSA = makeSubregionsJSA(rvmmData);
         JsonObject dataJSO = Json.createObjectBuilder()
                 .add(RVM_REGION_NAME, regionName)
@@ -223,6 +232,7 @@ public class RegioVincoFiles implements AppFileComponent {
                 .add(RVM_SCALE, mapScale)
                 .add(RVM_TRANSLATE_X, mapTranslateX)
                 .add(RVM_TRANSLATE_Y, mapTranslateY)
+                .add(RVM_VISA_PROPERTIES, visaPropertiesJSO)
                 .add(RVM_SUBREGIONS, subregionsJSA)
                 .build();
         saveJsonFile(dataJSO, filePath, true);
@@ -236,7 +246,10 @@ public class RegioVincoFiles implements AppFileComponent {
         jsonWriter.writeObject(dataJSO);
         jsonWriter.close();
 
-        OutputStream os = new FileOutputStream(filePath);
+        File file = new File(filePath);
+        String absolutePath = file.getAbsolutePath();
+        boolean exists = file.exists();
+        OutputStream os = new FileOutputStream(file);
         JsonWriter jsonFileWriter = Json.createWriter(os);
         jsonFileWriter.writeObject(dataJSO);
         String jsonText = sw.toString();
@@ -308,6 +321,14 @@ public class RegioVincoFiles implements AppFileComponent {
                 .add(RVM_POLYGON_ARRAY, polygonsJSA)
                 .build();
     }
+    public JsonObject makeVisaPropertiesJSO(HashMap<VisaProperty, String> visaProperties) {
+        JsonObjectBuilder jsoBuilder = Json.createObjectBuilder();
+        for (VisaProperty key : visaProperties.keySet()) {
+            String value = visaProperties.get(key);
+            jsoBuilder.add(key.toString(), value);
+        }
+        return jsoBuilder.build();
+    }
     public JsonArray makeSubregionsJSA(RegioVincoMapMakerData data) {
         Iterator<SubregionPrototype> subregionsIt = data.subregionsIterator();
         JsonArrayBuilder arrayBuilder = Json.createArrayBuilder();
@@ -343,8 +364,11 @@ public class RegioVincoFiles implements AppFileComponent {
         // AND THEN MAP VIEWING VALUES
         loadMapDimensions(rvmmData, json);
         loadViewport(rvmmData, json);
+        
+        // LOAD THE VISA PROPERTIES
+        loadVisaProperties(rvmmData, json);
 
-        // THE LOAD THE SUBREGIONS        
+        // THEN LOAD THE SUBREGIONS        
         loadSubregions(rvmmData, json);
 
         // WE'RE DONE LOADING DATA
@@ -429,6 +453,14 @@ public class RegioVincoFiles implements AppFileComponent {
         data.getMapNavigator().setMapTranslate(mapTranslateX, mapTranslateY);
         data.getMapNavigator().setMapScale(mapScale);
     }
+    public void loadVisaProperties(RegioVincoMapMakerData data, JsonObject jso) {
+        JsonObject visaProps = jso.getJsonObject(RVM_VISA_PROPERTIES);
+        for (String key : visaProps.keySet()) {
+            VisaProperty prop = VisaProperty.valueOf(key);
+            String value = visaProps.getString(key);
+            data.setVisaProperty(prop, value);
+        }
+    }
     public void loadSubregions(RegioVincoMapMakerData data, JsonObject jso) {
         JsonArray subregionsJSA = jso.getJsonArray(RVM_SUBREGIONS);
         for (int i = 0; i < subregionsJSA.size(); i++) {
@@ -479,14 +511,21 @@ public class RegioVincoFiles implements AppFileComponent {
         return subregion;
     }
 
-    public void importData(AppDataComponent data, String filePath) throws IOException {
+    public void importData(AppDataComponent data, String filePaths) throws IOException {
         RegioVincoMapMakerData mapData = (RegioVincoMapMakerData)data;
 
         // NOTE THAT WE ARE USING THE SIZE OF THE MAP
         mapData.setMapDimensions(DEFAULT_MAP_WIDTH, DEFAULT_MAP_HEIGHT);
         mapData.reset();
         
-        this.importShapefile(mapData, filePath);
+        String[] paths = filePaths.split("-");
+        String shpPath = paths[0];        
+        this.importShp(mapData, shpPath);
+        if (paths.length > 1) {
+            String dbfPath = paths[1];
+            String dbfField = paths[2];
+            this.importDbf(mapData, dbfPath, dbfField);
+        }
     }
     public int getDataAsInt(JsonObject json, String dataName) {
         JsonValue value = json.get(dataName);
@@ -522,10 +561,14 @@ public class RegioVincoFiles implements AppFileComponent {
         // IF WE'VE REACHED HERE THEN WE HAVE COMPRESSED
         // THE COOREDINATES DATA ENOUGH AND WE CAN NOW SAVE IT,
         // NOTE WE MAY EXPORT IT TWICE IF THOSE OPTIONS ARE SELECTED
-        if (data.getExportToGameApp())
-            exportToFile(data.getExportGameAppDataFilePath(), dataJSO);
-        if (data.getExportToRVMMApp())
-            exportToFile(data.getExportRVMMAppDataFilePath(), dataJSO);
+        if (data.getExportToGameApp()) {
+            String gameAppPath = data.getExportGameAppDataFilePath();
+            exportToFile(gameAppPath, dataJSO);
+        }
+        if (data.getExportToRVMMApp()) {
+            String rvmmAppPath = data.getExportRVMMAppDataFilePath();
+            exportToFile(rvmmAppPath, dataJSO);
+        }
     }
     
     public void exportToFile(String exportPath, JsonObject jso) {
@@ -561,7 +604,7 @@ public class RegioVincoFiles implements AppFileComponent {
                 exportFlagImage(data, flagSourcePath, rvmmAppFlagDestPath);
         }
     }
-    
+
     private void exportFlagImage(RegioVincoMapMakerData data,
                                     String sourcePath,
                                     String destPath) {
@@ -600,7 +643,7 @@ public class RegioVincoFiles implements AppFileComponent {
         if (data.getExportToRVMMApp())
             exportFlagImage(data, brochureSource, rvmmBrochureDest);
     }
-    
+
     private void exportBrochureImage(RegioVincoMapMakerData data,
                         String brochureSource, String brochureDest) {
         try {
@@ -626,6 +669,24 @@ public class RegioVincoFiles implements AppFileComponent {
             ImageIO.write(destImage, "png", new File(brochureDest));
         } catch (Exception e) {
             System.out.println("Error exporting brochure for " + data.getRegionName());
+        }
+    }
+    public void exportStamp(HashMap<VisaProperty, String> visaProperties, String filePath) {
+        JsonObject visaStampProps = this.makeVisaPropertiesJSO(visaProperties);
+        try {
+            File pwdFile = new File(".");
+            String pwdPath = pwdFile.getAbsolutePath();
+            filePath = pwdPath + "\\" + filePath;
+//            Class rvmmClass = RegioVincoMapMakerApp.class;
+//            URL url = rvmmClass.getResource(filePath);
+//            filePath = url.getPath();
+            this.saveJsonFile(visaStampProps, filePath, false);
+        }
+        catch(IOException ioe) {
+            Alert alert = new Alert(AlertType.ERROR);
+            alert.setHeaderText("Error Exporting Stamp Data");
+            alert.setTitle("Exporting Error");
+            alert.showAndWait();
         }
     }
     public JsonObject makeGeoJsonJSO(RegioVincoMapMakerData data) {
@@ -708,6 +769,7 @@ public class RegioVincoFiles implements AppFileComponent {
         String brochureLink = data.getBrochureLink();
         String leadersWikiPageType = data.getLeadersWikiPageType();
         String leadersWikiPageURL = data.getLeadersWikiPageURL();
+        JsonObject visaPropertiesJSO = makeVisaPropertiesJSO(data.cloneVisaProperties());
         if (includeAllSavedData) {
             return jsoBuilder
                 .add(RVM_SUBREGIONS_HAVE_NAMES, subregionsHaveNames)
@@ -721,6 +783,7 @@ public class RegioVincoFiles implements AppFileComponent {
                 .add(RVM_BROCHURE_LINK, brochureLink)
                 .add(RVM_LEADERS_WIKI_PAGE_TYPE, leadersWikiPageType)
                 .add(RVM_LEADERS_WIKI_PAGE_URL, leadersWikiPageURL)
+                .add(RVM_VISA_PROPERTIES, visaPropertiesJSO)
                     .build();
         }
         else {
@@ -734,10 +797,10 @@ public class RegioVincoFiles implements AppFileComponent {
                 .add(RVM_SUBREGION_TYPE, subregionType)
                 .add(RVM_LANDMARKS_DESCRIPTION, landmarksDescription)
                 .add(RVM_BROCHURE_LINK, brochureLink)
+                .add(RVM_VISA_PROPERTIES, visaPropertiesJSO)
                     .build();
         }
     }
-
     public HashMap<String, String> loadMapProperties(String workFilePath) {
         HashMap<String, String> mapProperties = new HashMap();
 
@@ -759,7 +822,6 @@ public class RegioVincoFiles implements AppFileComponent {
         }
         return mapProperties;
     }
-
 
     class GeoJsonCompressor {
         // THIS ONLY GETS INITIALIZED ONCE, WHEN THE COMPRESSOR IS CONSTRUCTED,
@@ -961,8 +1023,8 @@ public class RegioVincoFiles implements AppFileComponent {
             } while (!smallEnough);
         }
     }
-    
-    public void importShapefile(RegioVincoMapMakerData mapData, String filePath) throws IOException {
+
+    public void importShp(RegioVincoMapMakerData mapData, String filePath) throws IOException {
         // IF THE IMPORT FILE IS AN SHP FILE WE HAVE TO FIRST
         // CONVERT IT INTO A JSON FILE
         if (filePath.endsWith(".shp")) {
@@ -1013,6 +1075,39 @@ public class RegioVincoFiles implements AppFileComponent {
         mapData.randomizeSubregionColors();
         mapData.getMapNavigator().reset();
     }
+
+    public void importDbf(RegioVincoMapMakerData mapData, String dbfPath, String dbfField) throws IOException {
+        DBFReader reader = null;
+        try {
+            reader = new DBFReader(new FileInputStream(dbfPath));
+            
+            // FIRST FIGURE OUT THE FIELD INDEX
+            int numberOfFields = reader.getFieldCount();
+            int fieldIndex = -1;
+            for (int i = 0; i < numberOfFields; i++) {
+                DBFField field = reader.getField(i);
+                if (field.getName().trim().toUpperCase().equals(dbfField.trim().toUpperCase())) {
+                    fieldIndex = i;
+                }
+            }
+            ObservableList<SubregionPrototype> subregions = mapData.getSubregions();
+            Object[] rowObjects;
+            int subregionNumber = 0;
+            while ((rowObjects = reader.nextRecord()) != null) {
+                Object fieldData = rowObjects[fieldIndex];
+                String subregionName = fieldData.toString();
+                subregions.get(subregionNumber).setName(subregionName);
+                subregionNumber++;
+            }
+        } catch (DBFException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        finally {
+            DBFUtils.close(reader);
+        }
+    }        
 
     private String removeFileExt(String workPath) {
         return workPath.substring(0, workPath.indexOf("."));

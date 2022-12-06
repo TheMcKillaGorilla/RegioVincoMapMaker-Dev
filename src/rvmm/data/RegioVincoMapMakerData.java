@@ -845,4 +845,15 @@ public class RegioVincoMapMakerData implements AppDataComponent {
         TableView subregionsTableView = (TableView)gui.getGUINode(RVMM_SUBREGIONS_TABLE_VIEW);
         subregionsTableView.refresh();
     }
+    
+    private HashMap<VisaProperty, String> visaProperties = new HashMap();
+    public String getVisaProperty(VisaProperty prop) {
+        return visaProperties.get(prop);
+    }
+    public void setVisaProperty(VisaProperty prop, String value) {
+        visaProperties.put(prop, value);
+    }
+    public HashMap<VisaProperty, String> cloneVisaProperties() {
+        return (HashMap<VisaProperty, String>) visaProperties.clone();
+    }
 }

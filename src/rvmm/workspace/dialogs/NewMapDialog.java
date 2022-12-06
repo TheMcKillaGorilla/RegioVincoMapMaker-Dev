@@ -4,13 +4,18 @@ import static djf.modules.AppGUIModule.ENABLED;
 import djf.ui.AppNodesBuilder;
 import djf.ui.dialogs.AppDialogsFacade;
 import java.io.File;
+import java.io.FileInputStream;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.HashMap;
 import javafx.beans.value.ChangeListener;
 import javafx.beans.value.ObservableValue;
+import javafx.collections.ObservableList;
 import javafx.geometry.Pos;
 import javafx.geometry.VPos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
+import javafx.scene.control.ComboBox;
 import javafx.scene.control.Label;
 import javafx.scene.control.SelectionMode;
 import javafx.scene.control.TextField;
@@ -27,8 +32,14 @@ import javafx.stage.Stage;
 import properties_manager.PropertiesManager;
 import rvmm.RegioVincoMapMakerApp;
 import static rvmm.RegioVincoMapMakerPropertyType.*;
+import static rvmm.data.MapDataKeys.DBF_FILE_TYPE;
+import static rvmm.data.MapDataKeys.SHP_FILE_TYPE;
 import static rvmm.data.RVMM_Constants.WORK_FILE_EXT;
 import rvmm.data.RegioVincoMapMakerData;
+import rvmm.files.dbf.DBFException;
+import rvmm.files.dbf.DBFField;
+import rvmm.files.dbf.DBFReader;
+import rvmm.files.dbf.DBFUtils;
 import rvmm.workspace.DebugDisplay;
 import static rvmm.workspace.DebugDisplay.appendDebugText;
 import rvmm.workspace.RegioVincoMapMakerWorkspace;
@@ -48,9 +59,14 @@ public class NewMapDialog extends Stage {
     GridPane centerPane;
     Label regionNamePromptLabel;
     TextField regionNameTextField;
-    Label shapefilePromptLabel;
-    Label shapefileLabel;
-    Button shapefileEditButton;
+    Label shpPromptLabel;
+    Label shpLabel;
+    Button shpEditButton;
+    Label dbfPromptLabel;
+    Label dbfLabel;
+    Button dbfEditButton;
+    Label dbfFieldPromptLabel;
+    ComboBox dbfFieldComboBox;
     Label parentRegionPromptLabel;
     TreeView parentRegionTreeView;
     Label warningLabel;
@@ -69,9 +85,12 @@ public class NewMapDialog extends Stage {
 
     // THE DATA WE'LL BE COLLECTING TO MAKE A NEW MAP
     String regionName = "";
-    String shapefilePath = "";
+    String shpPath = "";
+    String dbfPath = "";
+    String dbfField = "";
     String parentRegionPath = "";
-    boolean shapefilePathSelected = false;
+    boolean shpPathSelected = false;
+    boolean dbfPathSelected = false;
     boolean parentRegionPathSelected = false;
     boolean goodData;
     
@@ -112,8 +131,12 @@ public class NewMapDialog extends Stage {
         return regionName;
     }
     
-    public String getShapefilePath() {
-        return shapefilePath;
+    public String getShpPath() {
+        return shpPath;
+    }
+    
+    public String getDbfPath() {
+        return dbfPath;
     }
 
     public String getParentRegionPath() {
@@ -133,12 +156,17 @@ public class NewMapDialog extends Stage {
         centerPane.setAlignment(Pos.CENTER);
         regionNamePromptLabel   = rvmmBuilder.buildLabel(RVMM_NEW_MAP_DIALOG_NAME_PROMPT_LABEL,     centerPane, 0, 0, 1, 1, CLASS_RVMM_DIALOG_PROMPT, ENABLED);
         regionNameTextField     = rvmmBuilder.buildTextField(RVMM_NEW_MAP_DIALOG_NAME_TEXT_FIELD,   centerPane, 1, 0, 2, 1, CLASS_RVMM_DIALOG_TEXT_FIELD, ENABLED);
-        shapefilePromptLabel = rvmmBuilder.buildLabel(RVMM_NEW_MAP_DIALOG_SHAPEFILE_PROMPT_LABEL, centerPane, 0, 1, 1, 1, CLASS_RVMM_DIALOG_PROMPT, ENABLED);
-        shapefileLabel = rvmmBuilder.buildLabel(RVMM_NEW_MAP_DIALOG_SHAPEFILE_LABEL, centerPane, 1, 1, 1, 1, CLASS_RVMM_DIALOG_PROMPT, ENABLED);
-        shapefileEditButton = rvmmBuilder.buildTextButton(RVMM_NEW_MAP_DIALOG_SHAPEFILE_EDIT_BUTTON, centerPane, 2, 1, 1, 1, CLASS_RVMM_BUTTON, ENABLED);
-        parentRegionPromptLabel = rvmmBuilder.buildLabel(RVMM_NEW_MAP_DIALOG_PARENT_REGION_PROMPT_LABEL, centerPane, 0, 2, 1, 1, CLASS_RVMM_DIALOG_PROMPT, ENABLED);
-        parentRegionTreeView = rvmmBuilder.buildTreeView(RVMM_NEW_MAP_DIALOG_PARENT_REGION_TREE_VIEW, centerPane, 1, 2, 2, 1, CLASS_RVMM_PARENT_TREE_VIEW, ENABLED);
-        warningLabel = rvmmBuilder.buildLabel(RVMM_NEW_MAP_DIALOG_WARNING_LABEL, centerPane, 0, 3, 3, 1, CLASS_RVMM_DIALOG_WARNING_LABEL, ENABLED);
+        shpPromptLabel = rvmmBuilder.buildLabel(RVMM_NEW_MAP_DIALOG_SHP_PROMPT_LABEL, centerPane, 0, 1, 1, 1, CLASS_RVMM_DIALOG_PROMPT, ENABLED);
+        shpLabel = rvmmBuilder.buildLabel(RVMM_NEW_MAP_DIALOG_SHP_LABEL, centerPane, 1, 1, 1, 1, CLASS_RVMM_DIALOG_PROMPT, ENABLED);
+        shpEditButton = rvmmBuilder.buildTextButton(RVMM_NEW_MAP_DIALOG_SHP_EDIT_BUTTON, centerPane, 2, 1, 1, 1, CLASS_RVMM_BUTTON, ENABLED);
+        dbfPromptLabel = rvmmBuilder.buildLabel(RVMM_NEW_MAP_DIALOG_DBF_PROMPT_LABEL, centerPane, 0, 2, 1, 1, CLASS_RVMM_DIALOG_PROMPT, ENABLED);
+        dbfLabel = rvmmBuilder.buildLabel(RVMM_NEW_MAP_DIALOG_DBF_LABEL, centerPane, 1, 2, 1, 1, CLASS_RVMM_DIALOG_PROMPT, ENABLED);
+        dbfEditButton = rvmmBuilder.buildTextButton(RVMM_NEW_MAP_DIALOG_DBF_EDIT_BUTTON, centerPane, 2, 2, 1, 1, CLASS_RVMM_BUTTON, ENABLED);
+        dbfFieldPromptLabel = rvmmBuilder.buildLabel(RVMM_NEW_MAP_DIALOG_DBF_FIELD_PROMPT_LABEL, centerPane, 0, 3, 1, 1, CLASS_RVMM_DIALOG_PROMPT, ENABLED);
+        dbfFieldComboBox = rvmmBuilder.buildComboBox(RVMM_NEW_MAP_DIALOG_DBF_FIELD_COMBO_BOX, centerPane, 1, 3, 2, 1, CLASS_RVMM_COMBO_BOX, ENABLED);
+        parentRegionPromptLabel = rvmmBuilder.buildLabel(RVMM_NEW_MAP_DIALOG_PARENT_REGION_PROMPT_LABEL, centerPane, 0, 4, 1, 1, CLASS_RVMM_DIALOG_PROMPT, ENABLED);
+        parentRegionTreeView = rvmmBuilder.buildTreeView(RVMM_NEW_MAP_DIALOG_PARENT_REGION_TREE_VIEW, centerPane, 1, 4, 2, 1, CLASS_RVMM_PARENT_TREE_VIEW, ENABLED);
+        warningLabel = rvmmBuilder.buildLabel(RVMM_NEW_MAP_DIALOG_WARNING_LABEL, centerPane, 0, 5, 3, 1, CLASS_RVMM_DIALOG_WARNING_LABEL, ENABLED);
         GridPane.setValignment(parentRegionPromptLabel, VPos.TOP);
         parentRegionTreeView.setMinWidth(1000);
 
@@ -169,8 +197,12 @@ public class NewMapDialog extends Stage {
             regionName = regionNameTextField.getText();
             this.updateControls();
         });
-        shapefileEditButton.setOnAction(e->{
-            this.selectShapefile();
+        shpEditButton.setOnAction(e->{
+            this.selectShp();
+            this.updateControls();
+        });
+        dbfEditButton.setOnAction(e->{
+            this.selectDbf();
             this.updateControls();
         });
         registerTreeHandlers();
@@ -223,35 +255,79 @@ public class NewMapDialog extends Stage {
         }
     }
     
-    private void selectShapefile() {
+    private void selectShp() {
         PropertiesManager props = PropertiesManager.getPropertiesManager();
         FileChooser fileChooser = new FileChooser();
         File dataFileDir = new File(props.getProperty(RVMM_PATH_RAW_MAP_DATA_FILES));
         fileChooser.setInitialDirectory(dataFileDir);
-        fileChooser.setTitle(props.getProperty(RVMM_NEW_MAP_SELECT_SHAPEFILE_DIALOG_TITLE));
+        fileChooser.setTitle(props.getProperty(RVMM_NEW_MAP_SELECT_SHP_DIALOG_TITLE));
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Shapefiles (*.shp)", "*.shp");
         fileChooser.getExtensionFilters().add(extFilter);
         File dataFile = fileChooser.showOpenDialog(this);
         if(dataFile != null) {
-            shapefilePath = new File(".").toURI().relativize(dataFile.toURI()).getPath();
-            shapefileLabel.setText(shapefilePath); 
-            shapefilePathSelected = true;
+            shpPath = new File(".").toURI().relativize(dataFile.toURI()).getPath();
+            shpLabel.setText(shpPath); 
+            shpPathSelected = true;
         }        
     }
-
+    
+    private void selectDbf() {
+        PropertiesManager props = PropertiesManager.getPropertiesManager();
+        FileChooser fileChooser = new FileChooser();
+        File dataFileDir = new File(props.getProperty(RVMM_PATH_RAW_MAP_DATA_FILES));
+        fileChooser.setInitialDirectory(dataFileDir);
+        fileChooser.setTitle(props.getProperty(RVMM_NEW_MAP_SELECT_DBF_DIALOG_TITLE));
+        FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("dBase (*.dbf)", "*.dbf");
+        fileChooser.getExtensionFilters().add(extFilter);
+        File dataFile = fileChooser.showOpenDialog(this);
+        if(dataFile != null) {
+            dbfPath = new File(".").toURI().relativize(dataFile.toURI()).getPath();
+            dbfLabel.setText(dbfPath); 
+            dbfPathSelected = true;
+            
+            DBFReader reader = null;
+            try {
+                reader = new DBFReader(new FileInputStream(dbfPath));
+                int numberOfFields = reader.getFieldCount();
+                ObservableList<String> fieldNames = this.dbfFieldComboBox.getItems();
+                fieldNames.clear();
+                fieldNames.add("-");
+                for (int i = 0; i < numberOfFields; i++) {
+                    DBFField field = reader.getField(i);
+                    String fieldName = field.getName();
+                    fieldNames.add(fieldName);
+                }
+            } catch (DBFException e) {
+                e.printStackTrace();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            finally {
+                DBFUtils.close(reader);
+            }
+        }        
+    }
+    
     private void createNewMap() {
         // GET THE USER INPUT
         regionName = regionNameTextField.getText();
         TreeItem<String> selectedItem = (TreeItem<String>)parentRegionTreeView.getSelectionModel().getSelectedItem();
         parentRegionPath = pathToNode(selectedItem);
-        shapefilePath = shapefileLabel.getText();
+        shpPath = shpLabel.getText();
+        dbfPath = dbfLabel.getText();
         goodData = hasValidInput();
+        String dataPaths = shpPath;
+        if (this.dbfPathSelected && (dbfField != null) && (!dbfField.equals("!"))) {
+            dbfField = dbfFieldComboBox.getSelectionModel().getSelectedItem().toString();
+            dataPaths += "-" + dbfPath + "-" + dbfField;
+        }
         if (goodData) {
             try {
                 RegioVincoMapMakerData data = (RegioVincoMapMakerData)app.getDataComponent();
                 data.startLoading();
                 app.getFileModule().newWork("work/" + parentRegionPath, regionName, WORK_FILE_EXT);
-                app.getFileComponent().importData(app.getDataComponent(), shapefilePath);
+                app.getFileComponent().importData(app.getDataComponent(), dataPaths);
+                               
                 data.setRegionName(regionName);
                 data.setParentRegionPath(parentRegionPath);
 
@@ -287,7 +363,7 @@ public class NewMapDialog extends Stage {
     private boolean hasValidInput() {
         return (!regionName.trim().isEmpty())
                 && (parentRegionPathSelected)
-                && (shapefilePathSelected);
+                && (shpPathSelected);
     }
     
     public void showDialog() {
@@ -299,9 +375,12 @@ public class NewMapDialog extends Stage {
         regionNameTextField.requestFocus();
 
         // RESET THE SHAPEFILE
-        shapefilePath = EMPTY_TEXT;   
-        shapefileLabel.setText(EMPTY_TEXT);
-        shapefilePathSelected = false;
+        shpPath = EMPTY_TEXT;   
+        shpLabel.setText(EMPTY_TEXT);
+        dbfPath = EMPTY_TEXT;
+        dbfLabel.setText(EMPTY_TEXT);
+        shpPathSelected = false;
+        dbfPathSelected = false;
         
         // AND THE PARENT PATH
         parentRegionPathSelected = false;

@@ -1,0 +1,13 @@
+
+{
+    "FONT_FAMILY":"Monospace",
+    "STAMP_TYPE":"HEXAGON",
+    "BORDER_THICKNESS":"1",
+    "NAME_FONT_SIZE":"8",
+    "STAMP_LENGTH":"300",
+    "NAME_Y":"0",
+    "DATE_Y":"0",
+    "STAMP_COLOR":"0xffffffff",
+    "DATE_FORMAT":"DD/MM/YYYY",
+    "DATE_FONT_SIZE":"8"
+}

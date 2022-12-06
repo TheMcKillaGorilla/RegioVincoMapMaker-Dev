@@ -26,7 +26,6 @@ import javax.json.JsonObjectBuilder;
 import org.apache.commons.io.FileUtils;
 import properties_manager.PropertiesManager;
 import rvmm.RegioVincoMapMakerApp;
-import static rvmm.RegioVincoMapMakerPropertyType.RVMM_NEW_MAP_SELECT_SHAPEFILE_DIALOG_TITLE;
 import static rvmm.RegioVincoMapMakerPropertyType.RVMM_PATH_RAW_MAP_DATA_FILES;
 import static rvmm.RegioVincoMapMakerPropertyType.RVMM_SUBREGIONS_TABLE_VIEW;
 import static rvmm.RegioVincoMapMakerPropertyType.RVMM_SUBREGION_TYPE_COMBO_BOX;
@@ -47,6 +46,8 @@ import rvmm.workspace.dialogs.BrochureDialog;
 import rvmm.workspace.dialogs.LeadersDialog;
 import rvmm.workspace.dialogs.ParentRegionDialog;
 import rvmm.workspace.dialogs.SubregionDialog;
+import static rvmm.RegioVincoMapMakerPropertyType.RVMM_NEW_MAP_SELECT_SHP_DIALOG_TITLE;
+import rvmm.workspace.dialogs.VisaDialog;
 
 public class MapEditController {
     RegioVincoMapMakerApp app;
@@ -65,6 +66,10 @@ public class MapEditController {
     public void processEditLeaders() {
         LeadersDialog leadersDialog = LeadersDialog.getLeadersDialog(app);
         leadersDialog.showDialog();
+    }
+    public void processEditVisa() {
+        VisaDialog visaDialog = VisaDialog.getVisaDialog(app);
+        visaDialog.showDialog();
     }
     public void processEditMapSettings() {
         ParentRegionDialog mapSettingsDialog = ParentRegionDialog.getMapSettingsDialog(app);
@@ -140,7 +145,7 @@ public class MapEditController {
         FileChooser fileChooser = new FileChooser();
         File dataFileDir = new File(props.getProperty(RVMM_PATH_RAW_MAP_DATA_FILES));
         fileChooser.setInitialDirectory(dataFileDir);
-        fileChooser.setTitle(props.getProperty(RVMM_NEW_MAP_SELECT_SHAPEFILE_DIALOG_TITLE));
+        fileChooser.setTitle(props.getProperty(RVMM_NEW_MAP_SELECT_SHP_DIALOG_TITLE));
         FileChooser.ExtensionFilter extFilter = new FileChooser.ExtensionFilter("Shapefiles (*.shp)", "*.shp");
         fileChooser.getExtensionFilters().add(extFilter);
         File dataFile = fileChooser.showOpenDialog(app.getGUIModule().getWindow());
@@ -149,7 +154,7 @@ public class MapEditController {
             RegioVincoFiles files = (RegioVincoFiles)app.getFileComponent();
             RegioVincoMapMakerData data = (RegioVincoMapMakerData)app.getDataComponent();
             try {
-                files.importShapefile(data, shapefilePath);
+                files.importData(data, shapefilePath);
             } catch (IOException ioe) {
                 AppDialogsFacade.showMessageDialog(app.getGUIModule().getWindow(), "Error", "Error");
             }
