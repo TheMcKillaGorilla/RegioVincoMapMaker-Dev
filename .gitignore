@@ -6,6 +6,9 @@ orig_images/*
 raw_map_data/*
 work/*
 *.txt
+work
+nbproject
+nbproject/*
 nbproject/jfx-impl_backup.xml
 nbproject/private/configs/RegioVincoMapMakerApp.properties
 src/rvmm/TestRelativize.java

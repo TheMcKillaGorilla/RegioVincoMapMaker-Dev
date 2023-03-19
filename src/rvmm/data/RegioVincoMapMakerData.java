@@ -421,6 +421,12 @@ public class RegioVincoMapMakerData implements AppDataComponent {
     public void setLandmarksDescription(String value) {
         setMapProperty(MapPropertyType.LANDMARKS_DESCRIPTION, value);
     }
+    public String getLandmarksSourceURL() {
+        return getMapProperty(MapPropertyType.LANDMARKS_SOURCE_URL);
+    }
+    public void setLandmarksSourceURL(String value) {
+        setMapProperty(MapPropertyType.LANDMARKS_SOURCE_URL, value);
+    }
     public String getLeadersType() {
         return getMapProperty(MapPropertyType.LEADERS_TYPE);
     }
@@ -560,11 +566,14 @@ public class RegioVincoMapMakerData implements AppDataComponent {
         this.setMapProperty(MapPropertyType.BROCHURE_IMAGE_URL, DEFAULT_BROCHURE_IMAGE_URL);
         this.setMapProperty(MapPropertyType.BROCHURE_LINK, DEFAULT_BROCHURE_LINK);
         this.setMapProperty(MapPropertyType.LANDMARKS_DESCRIPTION, DEFAULT_LANDMARKS_DESCRIPTION);
+        this.setMapProperty(MapPropertyType.LANDMARKS_SOURCE_URL, DEFAULT_LANDMARKS_SOURCE_URL);
         this.setMapProperty(MapPropertyType.LEADERS_TYPE, DEFAULT_LEADERS_TYPE);
         this.setMapProperty(MapPropertyType.LEADERS_WIKI_PAGE_TYPE, DEFAULT_LEADERS_WIKI_PAGE_TYPE);
         this.setMapProperty(MapPropertyType.LEADERS_WIKI_PAGE_URL, DEFAULT_LEADERS_WIKI_PAGE_URL);
         this.setMapProperty(MapPropertyType.REGION_NAME, DEFAULT_REGION_NAME);
         this.setMapProperty(MapPropertyType.SUBREGION_TYPE, DEFAULT_SUBREGION_TYPE);
+        
+        this.initDefaultVisaProperties();
 
         loading = false;
     }
@@ -847,6 +856,18 @@ public class RegioVincoMapMakerData implements AppDataComponent {
     }
     
     private HashMap<VisaProperty, String> visaProperties = new HashMap();
+    public void initDefaultVisaProperties() {
+        this.setVisaProperty(VisaProperty.STAMP_TYPE, RVMM_Constants.DEFAULT_STAMP_TYPE);
+        this.setVisaProperty(VisaProperty.DATE_FORMAT, RVMM_Constants.DEFAULT_DATE_FORMAT);
+        this.setVisaProperty(VisaProperty.STAMP_COLOR, RVMM_Constants.DEFAULT_STAMP_COLOR);
+        this.setVisaProperty(VisaProperty.STAMP_LENGTH, RVMM_Constants.DEFAULT_STAMP_LENGTH);
+        this.setVisaProperty(VisaProperty.NAME_Y, RVMM_Constants.DEFAULT_NAME_Y);
+        this.setVisaProperty(VisaProperty.DATE_Y, RVMM_Constants.DEFAULT_DATE_Y);
+        this.setVisaProperty(VisaProperty.FONT_FAMILY, RVMM_Constants.DEFAULT_FONT_FAMILY);
+        this.setVisaProperty(VisaProperty.NAME_FONT_SIZE, RVMM_Constants.DEFAULT_NAME_FONT_SIZE);
+        this.setVisaProperty(VisaProperty.DATE_FONT_SIZE, RVMM_Constants.DEFAULT_DATE_FONT_SIZE);
+        this.setVisaProperty(VisaProperty.BORDER_THICKNESS, RVMM_Constants.DEFAULT_BORDER_THICKNESS);
+    }
     public String getVisaProperty(VisaProperty prop) {
         return visaProperties.get(prop);
     }

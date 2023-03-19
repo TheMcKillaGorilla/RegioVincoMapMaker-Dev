@@ -3,6 +3,7 @@ package rvmm.transactions;
 import java.util.HashMap;
 import java.util.Iterator;
 import jtps.jTPS_Transaction;
+import rvmm.data.MapPropertyType;
 import rvmm.data.RegioVincoMapMakerData;
 import rvmm.data.SubregionPrototype;
 
@@ -14,19 +15,19 @@ public class SubregionsEdits_Transaction implements jTPS_Transaction {
     RegioVincoMapMakerData data;
     HashMap<SubregionPrototype, SubregionPrototype> oldValues;
     HashMap<SubregionPrototype, SubregionPrototype> newValues;
-    String oldLandmarksDescription;
-    String newLandmarksDescription;
+    HashMap<MapPropertyType, String> oldMapProperties;
+    HashMap<MapPropertyType, String> newMapProperties;
 
     public SubregionsEdits_Transaction( RegioVincoMapMakerData initData,
                                         HashMap<SubregionPrototype, SubregionPrototype> initOldValues, 
                                         HashMap<SubregionPrototype, SubregionPrototype> initNewValues,
-                                        String initOldLandmarksDescription,
-                                        String initNewLandmarksDescription) {
+                                        HashMap<MapPropertyType, String> initOldMapProperties,
+                                        HashMap<MapPropertyType, String> initNewMapProperties) {
         data = initData;
         oldValues = initOldValues;
         newValues = initNewValues;
-        oldLandmarksDescription = initOldLandmarksDescription;
-        newLandmarksDescription = initNewLandmarksDescription;
+        oldMapProperties = initOldMapProperties;
+        newMapProperties = initNewMapProperties;
     }
 
     @Override
@@ -42,8 +43,17 @@ public class SubregionsEdits_Transaction implements jTPS_Transaction {
             subToUpdate.setIsTerritory(editedSub.getIsTerritory());
             subToUpdate.loadLandmarks(editedSub.cloneLandmarks());
         }
-        data.setLandmarksDescription(newLandmarksDescription);
+        loadMapProperties(newMapProperties);
         data.refreshSubregions();
+    }
+    
+    private void loadMapProperties(HashMap<MapPropertyType,String> props) {
+        Iterator<MapPropertyType> it = props.keySet().iterator();
+        while (it.hasNext()) {
+            MapPropertyType key = it.next();
+            String prop = props.get(key);
+            data.setMapProperty(key, prop);
+        }        
     }
 
     @Override
@@ -59,7 +69,7 @@ public class SubregionsEdits_Transaction implements jTPS_Transaction {
             subToUpdate.setIsTerritory(editedSub.getIsTerritory());
             subToUpdate.loadLandmarks(editedSub.cloneLandmarks());
         }
-        data.setLandmarksDescription(oldLandmarksDescription);
+        loadMapProperties(oldMapProperties);
         data.refreshSubregions();
     }
 }

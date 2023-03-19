@@ -195,6 +195,7 @@ public class RegioVincoFiles implements AppFileComponent {
         String brochureImageURL = rvmmData.getBrochureImageURL();
         String brochureLink = rvmmData.getBrochureLink();
         String landmarksDescription = rvmmData.getLandmarksDescription();
+        String landmarksSourceURL = rvmmData.getLandmarksSourceURL();
         String leadersType = rvmmData.getLeadersType();
         String leadersWikiPageType = rvmmData.getLeadersWikiPageType();
         String leadersWikiPageURL = rvmmData.getLeadersWikiPageURL();
@@ -217,6 +218,7 @@ public class RegioVincoFiles implements AppFileComponent {
                 .add(RVM_BROCHURE_IMAGE_URL, brochureImageURL)
                 .add(RVM_BROCHURE_LINK, brochureLink)
                 .add(RVM_LANDMARKS_DESCRIPTION, landmarksDescription)
+                .add(RVM_LANDMARKS_SOURCE_URL, landmarksSourceURL)
                 .add(RVM_LEADERS_TYPE, leadersType)
                 .add(RVM_LEADERS_WIKI_PAGE_TYPE, leadersWikiPageType)
                 .add(RVM_LEADERS_WIKI_PAGE_URL, leadersWikiPageURL)
@@ -356,6 +358,7 @@ public class RegioVincoFiles implements AppFileComponent {
         loadBrochureImageURL(rvmmData, json);
         loadBrochureLink(rvmmData, json);
         loadLandmarksDescription(rvmmData, json);
+        loadLandmarksSourceURL(rvmmData, json);
         loadLeadersType(rvmmData, json);
         loadLeadersWikiPageType(rvmmData, json);
         loadLeadersWikiPageURL(rvmmData, json);
@@ -393,6 +396,10 @@ public class RegioVincoFiles implements AppFileComponent {
     public void loadLandmarksDescription(RegioVincoMapMakerData data, JsonObject jso) {
         String landmarksDescription = loadString(jso, RVM_LANDMARKS_DESCRIPTION);
         data.setLandmarksDescription(landmarksDescription);
+    }
+    public void loadLandmarksSourceURL(RegioVincoMapMakerData data, JsonObject jso) {
+        String landmarksSourceURL = loadString(jso, RVM_LANDMARKS_SOURCE_URL);
+        data.setLandmarksSourceURL(landmarksSourceURL);
     }
     public void loadLeadersType(RegioVincoMapMakerData data, JsonObject jso) {
         String leadersType = loadString(jso, RVM_LEADERS_TYPE);
@@ -455,10 +462,12 @@ public class RegioVincoFiles implements AppFileComponent {
     }
     public void loadVisaProperties(RegioVincoMapMakerData data, JsonObject jso) {
         JsonObject visaProps = jso.getJsonObject(RVM_VISA_PROPERTIES);
-        for (String key : visaProps.keySet()) {
-            VisaProperty prop = VisaProperty.valueOf(key);
-            String value = visaProps.getString(key);
-            data.setVisaProperty(prop, value);
+        if (visaProps != null) {
+            for (String key : visaProps.keySet()) {
+                VisaProperty prop = VisaProperty.valueOf(key);
+                String value = visaProps.getString(key);
+                data.setVisaProperty(prop, value);
+            }
         }
     }
     public void loadSubregions(RegioVincoMapMakerData data, JsonObject jso) {
@@ -765,6 +774,7 @@ public class RegioVincoFiles implements AppFileComponent {
         boolean subregionsHaveLandmarks = data.doSubregionsHaveLandmarks();
         String subregionType = data.getSubregionType();
         String landmarksDescription = data.getLandmarksDescription();
+        String landmarksSourceURL = data.getLandmarksSourceURL();
         String brochureImageURL = data.getBrochureImageURL();
         String brochureLink = data.getBrochureLink();
         String leadersWikiPageType = data.getLeadersWikiPageType();
@@ -779,6 +789,7 @@ public class RegioVincoFiles implements AppFileComponent {
                 .add(RVM_SUBREGIONS_HAVE_LANDMARKS, subregionsHaveLandmarks)
                 .add(RVM_SUBREGION_TYPE, subregionType)
                 .add(RVM_LANDMARKS_DESCRIPTION, landmarksDescription)
+                .add(RVM_LANDMARKS_SOURCE_URL, landmarksSourceURL)
                 .add(RVM_BROCHURE_IMAGE_URL, brochureImageURL)
                 .add(RVM_BROCHURE_LINK, brochureLink)
                 .add(RVM_LEADERS_WIKI_PAGE_TYPE, leadersWikiPageType)
@@ -796,6 +807,7 @@ public class RegioVincoFiles implements AppFileComponent {
                 .add(RVM_SUBREGIONS_HAVE_LANDMARKS, subregionsHaveLandmarks)
                 .add(RVM_SUBREGION_TYPE, subregionType)
                 .add(RVM_LANDMARKS_DESCRIPTION, landmarksDescription)
+                .add(RVM_LANDMARKS_SOURCE_URL, landmarksSourceURL)
                 .add(RVM_BROCHURE_LINK, brochureLink)
                 .add(RVM_VISA_PROPERTIES, visaPropertiesJSO)
                     .build();

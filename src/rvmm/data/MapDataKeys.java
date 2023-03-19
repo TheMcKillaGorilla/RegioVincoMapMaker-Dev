@@ -25,6 +25,7 @@ public class MapDataKeys {
     public static final String RVM_BROCHURE_IMAGE_URL = "brochure_image_url";
     public static final String RVM_BROCHURE_LINK = "brochure_link";
     public static final String RVM_LANDMARKS_DESCRIPTION = "landmarks_description";
+    public static final String RVM_LANDMARKS_SOURCE_URL = "landmarks_source_url";
     public static final String RVM_LEADERS_TYPE = "leaders_type";
     public static final String RVM_LEADERS_WIKI_PAGE_TYPE = "leaders_wiki_page_type";
     public static final String RVM_LEADERS_WIKI_PAGE_URL = "leaders_wiki_page_url";

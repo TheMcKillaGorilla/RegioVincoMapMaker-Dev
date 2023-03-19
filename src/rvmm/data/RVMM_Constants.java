@@ -36,6 +36,7 @@ public class RVMM_Constants {
     public static final String DEFAULT_BROCHURE_IMAGE_URL = "";
     public static final String DEFAULT_BROCHURE_LINK = "";
     public static final String DEFAULT_LANDMARKS_DESCRIPTION = "Find the landmarks of note";
+    public static final String DEFAULT_LANDMARKS_SOURCE_URL = "http://...";
     public static final String DEFAULT_LEADERS_TYPE = "-";
     public static final String DEFAULT_LEADERS_WIKI_PAGE_TYPE = "-";
     public static final String DEFAULT_LEADERS_WIKI_PAGE_URL = "";
@@ -48,6 +49,18 @@ public class RVMM_Constants {
     public static final String DEFAULT_LEADER = "-";
     public static final String DEFAULT_FLAG_LINK = "-";
     public static final Color DEFAULT_SUBREGION_FILL_COLOR = Color.BLUEVIOLET;
+    
+    // DEFAULT VISA VALUES
+    public static final String DEFAULT_STAMP_TYPE = "ARROW";
+    public static final String DEFAULT_DATE_FORMAT = "ISO_DATE";
+    public static final String DEFAULT_STAMP_COLOR = "#000000";
+    public static final String DEFAULT_STAMP_LENGTH = "300";
+    public static final String DEFAULT_NAME_Y = "0";
+    public static final String DEFAULT_DATE_Y = "0";
+    public static final String DEFAULT_FONT_FAMILY = "Arial";
+    public static final String DEFAULT_NAME_FONT_SIZE = "20";
+    public static final String DEFAULT_DATE_FONT_SIZE = "16";
+    public static final String DEFAULT_BORDER_THICKNESS = "1";
     
     // USED FOR NAVIGATION
     public static final double SCALE_FACTOR = 1.05;

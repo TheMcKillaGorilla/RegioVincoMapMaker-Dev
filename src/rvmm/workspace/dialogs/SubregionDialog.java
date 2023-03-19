@@ -77,9 +77,11 @@ public class SubregionDialog extends Stage {
     TextField addLandmarkTextField;
     Button addLandmarkButton;
     ListView<String> landmarksListView;
-    HBox landmarksDescriptionPane;
+    GridPane landmarksDescriptionPane;
     Label landmarksDescriptionLabel;
     TextField landmarksDescriptionTextField;
+    Label landmarksSourceURLLabel;
+    TextField landmarksSourceURLTextField;
     
     // WE PUT THE SUBREGION AND LANDMARK EDITING CONTROLS HERE
     SplitPane centerPane;
@@ -92,6 +94,7 @@ public class SubregionDialog extends Stage {
     // THE SUBREGION CURRENTLY LOADED AND BEING EDITED BY THIS DIALOG    
     SubregionPrototype currentSubregion;
     String originalLandmarksDescription;
+    String originalLandmarksSourceURL;
 
     // THIS STORES THE EDITS THAT HAVE HAPPENED BUT HAVE
     // NOT YET BEEN CONFIRMED
@@ -188,10 +191,11 @@ public class SubregionDialog extends Stage {
         addLandmarkTextField = rvmmBuilder.buildTextField(RVMM_SUBREGION_DIALOG_ADD_LANDMARK_TEXT_FIELD, addLandmarkPane, CLASS_RVMM_DIALOG_TEXT_FIELD, ENABLED);
         addLandmarkButton = rvmmBuilder.buildTextButton(RVMM_SUBREGION_DIALOG_ADD_LANDMARK_BUTTON, addLandmarkPane, CLASS_RVMM_BUTTON, ENABLED);
         landmarksListView = rvmmBuilder.buildListView(RVMM_SUBREGION_DIALOG_LANDMARKS_LIST_VIEW, centerRightPane, CLASS_RVMM_LANDMARKS_LIST_VIEW, ENABLED);
-        landmarksDescriptionPane = rvmmBuilder.buildHBox(RVMM_SUBREGION_DIALOG_LANDMARKS_DESCRIPTION_PANE, centerRightPane, CLASS_RVMM_PANE, ENABLED);
-        landmarksDescriptionPane.setAlignment(Pos.CENTER_LEFT);
-        landmarksDescriptionLabel = rvmmBuilder.buildLabel(RVMM_SUBREGION_DIALOG_LANDMARKS_DESCRIPTION_LABEL, landmarksDescriptionPane, CLASS_RVMM_DIALOG_PROMPT, ENABLED);
-        landmarksDescriptionTextField = rvmmBuilder.buildTextField(RVMM_SUBREGION_DIALOG_LANDMARKS_DESCRIPTION_TEXT_FIELD, landmarksDescriptionPane, CLASS_RVMM_DIALOG_TEXT_FIELD, ENABLED);
+        landmarksDescriptionPane = rvmmBuilder.buildGridPane(RVMM_SUBREGION_DIALOG_LANDMARKS_DESCRIPTION_PANE, centerRightPane, CLASS_RVMM_PANE, ENABLED);
+        landmarksDescriptionLabel = rvmmBuilder.buildLabel(RVMM_SUBREGION_DIALOG_LANDMARKS_DESCRIPTION_LABEL, landmarksDescriptionPane, 0, 0, 1, 1, CLASS_RVMM_DIALOG_PROMPT, ENABLED);
+        landmarksDescriptionTextField = rvmmBuilder.buildTextField(RVMM_SUBREGION_DIALOG_LANDMARKS_DESCRIPTION_TEXT_FIELD, landmarksDescriptionPane, 1, 0, 1, 1, CLASS_RVMM_DIALOG_TEXT_FIELD, ENABLED);
+        landmarksSourceURLLabel = rvmmBuilder.buildLabel(RVMM_SUBREGION_DIALOG_LANDMARKS_SOURCE_URL_LABEL, landmarksDescriptionPane, 0, 1, 1, 1, CLASS_RVMM_DIALOG_PROMPT, ENABLED);
+        landmarksSourceURLTextField = rvmmBuilder.buildTextField(RVMM_SUBREGION_DIALOG_LANDMARKS_SOURCE_URL_TEXT_FIELD, landmarksDescriptionPane, 1, 1, 1, 1, CLASS_RVMM_DIALOG_TEXT_FIELD, ENABLED);
 
         centerPane = rvmmBuilder.buildSplitPane(RVMM_SUBREGION_DIALOG_CENTER_PANE, dialogPane, EMPTY_TEXT, ENABLED);
         centerPane.getItems().add(centerLeftPane);
@@ -384,6 +388,11 @@ public class SubregionDialog extends Stage {
         String landmarksDescription = data.getMapProperty(MapPropertyType.LANDMARKS_DESCRIPTION);
         this.landmarksDescriptionTextField.setText(landmarksDescription);
         this.originalLandmarksDescription = landmarksDescription;
+        String landmarksSourceURLPrompt = data.getRegionName() + " Landmarks Source URL: ";
+        this.landmarksSourceURLLabel.setText(landmarksSourceURLPrompt);
+        String landmarksSourceURL = data.getMapProperty(MapPropertyType.LANDMARKS_SOURCE_URL);
+        this.landmarksSourceURLTextField.setText(landmarksSourceURL);
+        this.originalLandmarksSourceURL = landmarksSourceURL;
 
         // NOW CLONE THE ONE WE ARE EDITING FIRST
         cloneAndLoadSubregion(initCurrentSubregion);
@@ -537,8 +546,13 @@ public class SubregionDialog extends Stage {
             newValues.put(originalSubregion, editedSubregion);
         }
         RegioVincoMapMakerData data = (RegioVincoMapMakerData)app.getDataComponent();
-        String newLandmarksDescription = this.landmarksDescriptionTextField.getText();
-        SubregionsEdits_Transaction transaction = new SubregionsEdits_Transaction(data, oldValues, newValues, originalLandmarksDescription, newLandmarksDescription);
+        HashMap<MapPropertyType, String> oldProps = new HashMap();
+        oldProps.put(MapPropertyType.LANDMARKS_DESCRIPTION, data.getMapProperty(MapPropertyType.LANDMARKS_DESCRIPTION));
+        oldProps.put(MapPropertyType.LANDMARKS_SOURCE_URL, data.getMapProperty(MapPropertyType.LANDMARKS_SOURCE_URL));
+        HashMap<MapPropertyType, String> newProps = new HashMap();
+        newProps.put(MapPropertyType.LANDMARKS_DESCRIPTION, this.landmarksDescriptionTextField.getText());
+        newProps.put(MapPropertyType.LANDMARKS_SOURCE_URL, this.landmarksSourceURLTextField.getText());
+        SubregionsEdits_Transaction transaction = new SubregionsEdits_Transaction(data, oldValues, newValues, oldProps, newProps);
         app.processTransaction(transaction);
     }
 
